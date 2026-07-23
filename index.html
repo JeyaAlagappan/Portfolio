@@ -3,55 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jeya Alagappan — AI & Automation Engineer</title>
+<title>Jeya Alagappan — AI &amp; Automation Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --bg2: #111118;
-    --bg3: #16161f;
-    --surface: #1c1c28;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
-    --text: #f0eff5;
-    --text2: #9896a8;
-    --text3: #5e5c72;
-    --accent: #7c6dfa;
-    --accent2: #a897ff;
-    --teal: #2dd4bf;
-    --coral: #f87060;
-    --amber: #f5a623;
-    --green: #4ade80;
-    --client-badge: #fbbf24;
+    --bg: #0a0c10;
+    --bg2: #0e1116;
+    --panel: #12151c;
+    --panel2: #161a22;
+    --line: rgba(148,163,184,0.09);
+    --line-strong: rgba(148,163,184,0.18);
+    --text: #e7e9f0;
+    --text2: #8d93a6;
+    --text3: #4d5264;
+    --copper: #ff8c4a;
+    --copper-soft: #ffb385;
+    --copper-dim: rgba(255,140,74,0.14);
+    --signal: #4fe0c4;
+    --signal-dim: rgba(79,224,196,0.14);
+    --gold: #f2c14e;
+    --gold-dim: rgba(242,193,78,0.14);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
   }
 
-  /* GRID LINES BG */
+  /* faint circuit grid backdrop */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(124,109,250,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(124,109,250,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
     pointer-events: none;
     z-index: 0;
   }
 
-  /* NAV */
+  ::selection { background: var(--copper-dim); color: var(--copper-soft); }
+
+  a { color: inherit; }
+
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 4rem; position: relative; z-index: 1; }
+
+  /* ============ SIGNAL RAIL (left-edge scroll progress / section nav) ============ */
+  .rail {
+    position: fixed;
+    left: 2.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rail-track {
+    position: relative;
+    width: 2px;
+    height: 220px;
+    background: var(--line-strong);
+  }
+
+  .rail-fill {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, var(--copper), var(--signal));
+    transition: height 0.15s linear;
+  }
+
+  .rail-nodes {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .rail-node {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--text3);
+    margin-left: -3.5px;
+    cursor: pointer;
+    transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+  }
+
+  .rail-node.active {
+    border-color: var(--copper);
+    background: var(--copper);
+    box-shadow: 0 0 10px var(--copper);
+  }
+
+  @media (max-width: 1000px) { .rail { display: none; } }
+
+  /* ============ NAV ============ */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -59,38 +123,43 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.2rem 4rem;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
+    padding: 1.1rem 4rem;
+    background: rgba(10,12,16,0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
   }
 
   .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 14px;
-    color: var(--accent2);
-    letter-spacing: 0.04em;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text2);
+    letter-spacing: 0.02em;
   }
+  .nav-logo b { color: var(--copper); font-weight: 600; }
+  .nav-logo .caret { color: var(--signal); animation: blink 1.1s step-end infinite; }
 
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
 
   .nav-links a {
     color: var(--text2);
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
-
+  .nav-links a::before { content: '·'; color: var(--copper); font-size: 18px; line-height: 0; }
   .nav-links a:hover { color: var(--text); }
 
-  /* HERO */
+  @media (max-width: 760px) { .nav-links { display: none; } }
+
+  /* ============ HERO ============ */
   .hero {
     position: relative;
     z-index: 1;
@@ -98,451 +167,448 @@
     display: flex;
     align-items: center;
     padding: 0 4rem;
-    padding-top: 80px;
+    padding-top: 90px;
+    overflow: hidden;
   }
 
-  .hero-inner {
-    max-width: 900px;
+  .hero-schematic {
+    position: absolute;
+    top: 0; right: -8%;
+    width: 62%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.55;
+    pointer-events: none;
   }
+  .hero-schematic .trace { fill: none; stroke: var(--line-strong); stroke-width: 1.4; }
+  .hero-schematic .trace.copper { stroke: var(--copper); stroke-opacity: 0.4; stroke-dasharray: 6 10; animation: dash 6s linear infinite; }
+  .hero-schematic .trace.signal { stroke: var(--signal); stroke-opacity: 0.35; stroke-dasharray: 4 9; animation: dash 8s linear infinite reverse; }
+  .hero-schematic .node { fill: var(--bg2); stroke: var(--text3); stroke-width: 1.4; }
+  .hero-schematic .node.lit { fill: var(--copper); stroke: var(--copper); animation: nodepulse 2.6s ease-in-out infinite; }
+  .hero-schematic .node.lit2 { fill: var(--signal); stroke: var(--signal); animation: nodepulse 3.2s ease-in-out infinite 0.6s; }
+
+  @keyframes dash { to { stroke-dashoffset: -160; } }
+  @keyframes nodepulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-schematic .trace.copper, .hero-schematic .trace.signal, .hero-schematic .node.lit, .hero-schematic .node.lit2,
+    .nav-logo .caret, .cursor-blink { animation: none !important; }
+  }
+
+  .hero-inner { max-width: 700px; position: relative; z-index: 1; }
 
   .hero-tag {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
-    color: var(--accent2);
-    letter-spacing: 0.1em;
+    color: var(--signal);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 2rem;
-    border: 1px solid rgba(124,109,250,0.3);
-    padding: 6px 14px;
-    border-radius: 100px;
+    margin-bottom: 2.2rem;
+    border: 1px solid rgba(79,224,196,0.3);
+    background: var(--signal-dim);
+    padding: 6px 14px 6px 10px;
+    border-radius: 3px;
   }
-
   .hero-tag::before {
     content: '';
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
+    width: 7px; height: 7px;
+    background: var(--signal);
     border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    box-shadow: 0 0 8px var(--signal);
+    animation: nodepulse 2s infinite;
   }
 
   .hero h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(3.5rem, 7vw, 6rem);
-    line-height: 1.05;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.6rem, 5.4vw, 4.4rem);
+    line-height: 1.1;
     letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.6rem;
   }
 
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent2);
+  .hero h1 .tok {
+    display: inline-block;
+    color: var(--copper);
+    position: relative;
+    padding: 0 0.08em;
+  }
+  .hero h1 .tok::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0.06em;
+    height: 2px;
+    background: var(--copper);
+    opacity: 0.5;
   }
 
   .hero-sub {
-    font-size: 1.15rem;
+    font-size: 1.08rem;
     color: var(--text2);
-    max-width: 600px;
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 2.4rem;
   }
 
-  .hero-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 3rem;
-  }
+  .hero-skills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.8rem; }
 
   .skill-pill {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
     color: var(--text2);
-    border: 1px solid var(--border2);
-    padding: 5px 14px;
-    border-radius: 100px;
-    letter-spacing: 0.03em;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
+    border: 1px solid var(--line-strong);
+    background: var(--panel);
+    padding: 5px 12px;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+    display: inline-flex;
     align-items: center;
+    gap: 6px;
   }
+  .skill-pill::before { content: ''; width: 5px; height: 5px; background: var(--text3); border-radius: 1px; }
+
+  .hero-cta { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--accent);
-    color: #fff;
+    background: var(--copper);
+    color: #0a0c10;
     text-decoration: none;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     transition: background 0.2s, transform 0.2s;
   }
-
-  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--copper-soft); transform: translateY(-1px); }
 
   .btn-ghost {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    border: 1px solid var(--line-strong);
     color: var(--text2);
     text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    border: 1px solid var(--border2);
+    padding: 11px 22px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.02em;
     transition: border-color 0.2s, color 0.2s;
   }
+  .btn-ghost:hover { border-color: var(--copper); color: var(--copper-soft); }
 
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent2); }
-
-  /* SECTION */
-  section {
+  /* ============ STATUS / STATS PANEL ============ */
+  .status-panel {
     position: relative;
     z-index: 1;
-    padding: 5rem 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .section-desc {
-    color: var(--text2);
-    font-size: 1rem;
-    max-width: 560px;
-    margin-bottom: 3rem;
-    line-height: 1.7;
-  }
-
-  /* DIVIDER */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: var(--border);
-    margin: 0;
-  }
-
-  /* PROJECT GRID */
-  .projects-grid {
+    margin: 0 4rem 6rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    background: var(--panel);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .project-card {
-    background: var(--bg2);
-    padding: 2rem 2rem 1.8rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    transition: background 0.2s;
+  .status-item {
+    padding: 1.8rem 2rem;
+    border-right: 1px solid var(--line);
     position: relative;
   }
-
-  .project-card:hover { background: var(--bg3); }
-
-  .project-card.full-width {
-    grid-column: 1 / -1;
-  }
-
-  .card-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  .card-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 0.25rem;
-  }
-
-  .badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-weight: 500;
-  }
-
-  .badge-client {
-    background: rgba(251,191,36,0.12);
-    color: var(--client-badge);
-    border: 1px solid rgba(251,191,36,0.25);
-  }
-
-  .badge-personal {
-    background: rgba(124,109,250,0.1);
-    color: var(--accent2);
-    border: 1px solid rgba(124,109,250,0.2);
-  }
-
-  .badge-python { background: rgba(45,212,191,0.08); color: var(--teal); border: 1px solid rgba(45,212,191,0.2); }
-  .badge-n8n { background: rgba(248,112,96,0.08); color: var(--coral); border: 1px solid rgba(248,112,96,0.2); }
-  .badge-ai { background: rgba(168,151,255,0.08); color: var(--accent2); border: 1px solid rgba(168,151,255,0.2); }
-  .badge-rag { background: rgba(74,222,128,0.08); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
-
-  .project-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
+  .status-item:last-child { border-right: none; }
+  .status-item::before {
+    content: attr(data-tag);
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
     color: var(--text3);
-    flex-shrink: 0;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
   }
 
-  .project-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.45rem;
-    line-height: 1.2;
+  .status-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--copper-soft);
+    line-height: 1;
     margin-bottom: 0.4rem;
   }
 
-  .project-desc {
-    font-size: 0.9rem;
+  .status-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
     color: var(--text2);
-    line-height: 1.65;
-    flex: 1;
   }
 
-  .project-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 0.5rem;
+  @media (max-width: 760px) {
+    .status-panel { grid-template-columns: 1fr; margin: 0 1.4rem 4rem; }
+    .status-item { border-right: none; border-bottom: 1px solid var(--line); }
   }
 
-  .stack-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    padding: 2px 10px;
-    border-radius: 4px;
-  }
+  /* ============ SECTION SHELL ============ */
+  section { position: relative; z-index: 1; padding: 5rem 4rem; }
 
-  .project-links {
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--copper);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-top: 0.5rem;
-    flex-wrap: wrap;
+    gap: 8px;
   }
+  .section-label::before { content: '◆'; font-size: 9px; }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-desc { color: var(--text2); max-width: 640px; line-height: 1.75; margin-bottom: 3rem; }
+
+  .divider {
+    height: 1px;
+    background: var(--line);
+    margin: 0 4rem;
+    position: relative;
+    z-index: 1;
+  }
+  .divider::before {
+    content: '';
+    position: absolute;
+    left: 0; top: -1px;
+    width: 46px; height: 3px;
+    background: var(--copper);
+  }
+
+  /* ============ ABOUT ============ */
+  .about-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 4rem; align-items: start; }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+
+  .about-copy p { color: var(--text2); margin-bottom: 1.2rem; line-height: 1.8; }
+  .about-copy strong { color: var(--text); font-weight: 600; }
+
+  .stack-panel {
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    background: var(--panel);
+    overflow: hidden;
+  }
+  .stack-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.4rem;
+    border-bottom: 1px solid var(--line);
+    gap: 1rem;
+  }
+  .stack-row:last-child { border-bottom: none; }
+  .stack-row-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .stack-row-value { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--text); text-align: right; }
+  .stack-row-value b { color: var(--signal); font-weight: 500; }
+
+  /* ============ PROJECTS ============ */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 900px) { .projects-grid { grid-template-columns: 1fr; } }
+
+  .project-card {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--line-strong);
+    border-left: 3px solid var(--text3);
+    border-radius: 4px;
+    padding: 1.7rem 1.7rem 1.5rem;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .project-card.is-client { border-left-color: var(--copper); }
+  .project-card.is-personal { border-left-color: var(--signal); }
+  .project-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
+  .project-card.full-width { grid-column: 1 / -1; }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .card-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0.7rem; }
+
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid var(--line-strong);
+    color: var(--text2);
+  }
+  .badge-client { color: var(--gold); border-color: rgba(242,193,78,0.35); background: var(--gold-dim); }
+  .badge-personal { color: var(--signal); border-color: rgba(79,224,196,0.3); background: var(--signal-dim); }
+
+  .project-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; }
+
+  .project-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text3);
+    border: 1px solid var(--line-strong);
+    border-radius: 3px;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  .project-desc { color: var(--text2); font-size: 14.5px; line-height: 1.7; margin-bottom: 1.2rem; }
+
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.2rem; }
+  .stack-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text2);
+    border: 1px solid var(--line);
+    background: var(--bg2);
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+
+  .project-links { display: flex; gap: 0.7rem; flex-wrap: wrap; align-items: center; }
 
   .link-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
-    font-weight: 600;
     text-decoration: none;
-    padding: 7px 16px;
-    border-radius: 6px;
-    transition: all 0.2s;
-    letter-spacing: 0.03em;
-  }
-
-  .link-github {
-    background: rgba(255,255,255,0.05);
+    padding: 7px 13px;
+    border-radius: 3px;
+    border: 1px solid var(--line-strong);
     color: var(--text2);
-    border: 1px solid var(--border2);
+    transition: border-color 0.2s, color 0.2s;
   }
+  .link-btn .icon { width: 13px; height: 13px; }
+  .link-btn:hover { color: var(--copper-soft); border-color: var(--copper); }
 
-  .link-github:hover { border-color: var(--text2); color: var(--text); }
+  .no-demo { font-size: 11.5px; color: var(--text3); font-family: 'IBM Plex Mono', monospace; }
 
-  .link-demo {
-    background: rgba(124,109,250,0.12);
-    color: var(--accent2);
-    border: 1px solid rgba(124,109,250,0.25);
-  }
-
-  .link-demo:hover { background: rgba(124,109,250,0.22); }
-
-  .link-drive {
-    background: rgba(45,212,191,0.08);
-    color: var(--teal);
-    border: 1px solid rgba(45,212,191,0.2);
-  }
-
-  .link-drive:hover { background: rgba(45,212,191,0.15); }
-
-  /* ICON SVGs inline */
-  .icon {
-    width: 13px;
-    height: 13px;
-    flex-shrink: 0;
-  }
-
-  /* HIGHLIGHTS ROW */
-  .highlights {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 3rem;
-  }
-
-  .highlight-item {
-    background: var(--bg2);
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .highlight-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 3rem;
-    color: var(--accent2);
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-
-  .highlight-label {
-    font-size: 13px;
-    color: var(--text2);
-    letter-spacing: 0.03em;
-  }
-
-  /* CONTACT */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .contact-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .contact-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
+  .flow-block { margin-top: 1rem; margin-bottom: 1.2rem; }
+  .flow-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
     color: var(--text3);
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    margin-bottom: 0.8rem;
   }
-
-  .contact-value {
-    font-size: 1rem;
-    color: var(--text);
-    text-decoration: none;
+  .flow-step { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--text2); padding: 3px 0; }
+  .flow-step .dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    flex-shrink: 0;
+    background: var(--copper-dim); color: var(--copper-soft);
   }
+  .flow-step .dot.last { background: var(--signal-dim); color: var(--signal); }
+  .flow-step .step-title { color: var(--text); font-weight: 500; }
 
-  .contact-value:hover { color: var(--accent2); }
+  .fw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+  @media (max-width: 760px) { .fw-grid { grid-template-columns: 1fr; } }
 
-  /* FOOTER */
+  /* ============ CONTACT (terminal panel) ============ */
+  .term {
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    background: var(--panel);
+    overflow: hidden;
+    max-width: 720px;
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0.7rem 1rem;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--line);
+  }
+  .term-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--text3); }
+  .term-title {
+    margin-left: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+  }
+  .term-body { padding: 1.6rem 1.8rem; font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; }
+  .term-line { display: flex; gap: 10px; padding: 0.5rem 0; flex-wrap: wrap; }
+  .term-prompt { color: var(--copper); flex-shrink: 0; }
+  .term-key { color: var(--text3); }
+  .term-val { color: var(--text); text-decoration: none; }
+  .term-val:hover { color: var(--signal); }
+  .term-status { color: var(--signal); }
+  .cursor-blink { display: inline-block; width: 7px; height: 15px; background: var(--copper); vertical-align: -2px; animation: blink 1s step-end infinite; }
+
+  /* ============ FOOTER ============ */
   footer {
     position: relative;
     z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 2rem 4rem;
+    padding: 2.4rem 4rem;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid var(--line);
   }
+  footer p { color: var(--text3); font-size: 12.5px; font-family: 'IBM Plex Mono', monospace; }
+  .footer-accent { color: var(--text3); font-size: 12px; font-family: 'IBM Plex Mono', monospace; }
 
-  footer p {
-    font-size: 13px;
-    color: var(--text3);
-  }
-
-  .footer-accent {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-  }
-
-  /* GLOW ORBS */
-  .orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .orb1 {
-    width: 600px;
-    height: 600px;
-    background: rgba(124,109,250,0.07);
-    top: -200px;
-    right: -200px;
-  }
-
-  .orb2 {
-    width: 400px;
-    height: 400px;
-    background: rgba(45,212,191,0.05);
-    bottom: 200px;
-    left: -100px;
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .hero { padding: 5rem 1.5rem 3rem; }
-    section { padding: 3rem 1.5rem; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .highlights { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-    .hero h1 { font-size: 2.8rem; }
+  @media (max-width: 760px) {
+    .wrap, nav, .hero, section, .divider, footer { padding-left: 1.4rem; padding-right: 1.4rem; }
+    section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
   }
 </style>
 </head>
 <body>
 
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
+<div class="rail" aria-hidden="true">
+  <div class="rail-track">
+    <div class="rail-fill" id="railFill"></div>
+    <div class="rail-nodes">
+      <div class="rail-node" data-section="hero"></div>
+      <div class="rail-node" data-section="about"></div>
+      <div class="rail-node" data-section="projects"></div>
+      <div class="rail-node" data-section="contact"></div>
+    </div>
+  </div>
+</div>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">Jeya AL</div>
+  <span class="nav-logo">JEYA_AL<span class="caret">_</span></span>
   <ul class="nav-links">
     <li><a href="#projects">Projects</a></li>
     <li><a href="#about">About</a></li>
@@ -552,12 +618,37 @@
 </nav>
 
 <!-- HERO -->
-<div class="hero">
+<section id="hero" class="hero" style="min-height:100vh;">
+  <svg class="hero-schematic" viewBox="0 0 640 640" preserveAspectRatio="xMidYMid meet">
+    <path class="trace" d="M40 120 H260 V220 H460" />
+    <path class="trace copper" d="M40 120 H260 V220 H460" />
+    <path class="trace" d="M60 320 H220 V420 H520 V500" />
+    <path class="trace signal" d="M60 320 H220 V420 H520 V500" />
+    <path class="trace" d="M480 90 V240 H340 V380" />
+    <path class="trace copper" d="M480 90 V240 H340 V380" />
+    <path class="trace" d="M120 460 H300 V560" />
+    <circle class="node lit" cx="40" cy="120" r="6" />
+    <circle class="node" cx="260" cy="120" r="6" />
+    <circle class="node" cx="260" cy="220" r="6" />
+    <circle class="node lit2" cx="460" cy="220" r="6" />
+    <circle class="node" cx="60" cy="320" r="6" />
+    <circle class="node lit" cx="220" cy="420" r="6" />
+    <circle class="node" cx="520" cy="420" r="6" />
+    <circle class="node lit2" cx="520" cy="500" r="6" />
+    <circle class="node" cx="480" cy="90" r="6" />
+    <circle class="node lit" cx="480" cy="240" r="6" />
+    <circle class="node" cx="340" cy="240" r="6" />
+    <circle class="node" cx="340" cy="380" r="6" />
+    <circle class="node" cx="120" cy="460" r="6" />
+    <circle class="node lit2" cx="300" cy="460" r="6" />
+    <circle class="node" cx="300" cy="560" r="6" />
+  </svg>
+
   <div class="hero-inner">
-    <div class="hero-tag">Available for projects · Chennai, India</div>
-    <h1>Building AI systems<br>that actually <em>work</em></h1>
+    <div class="hero-tag">system status: available for work</div>
+    <h1>Building AI systems that actually <span class="tok">work</span></h1>
     <p class="hero-sub">
-      Agentic AI & workflow automation engineer. I design and ship multi-agent systems,
+      Agentic AI &amp; workflow automation engineer. I design and ship multi-agent systems,
       RAG pipelines, and n8n automations — from prototype to production.
     </p>
     <div class="hero-skills">
@@ -568,85 +659,71 @@
       <span class="skill-pill">Python · Next.js</span>
       <span class="skill-pill">Supabase · Neo4j · ChromaDB</span>
       <span class="skill-pill">OpenAI · Claude API</span>
-
     </div>
     <div class="hero-cta">
-      <a href="#projects" class="btn-primary">
-        <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
-        View Projects
-      </a>
-      <a href="https://github.com/JeyaAlagappan" target="_blank" class="btn-ghost">
-        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        GitHub Profile
-      </a>
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="https://github.com/JeyaAlagappan" target="_blank" class="btn-ghost">GitHub Profile</a>
     </div>
+  </div>
+</section>
+
+<div class="status-panel">
+  <div class="status-item" data-tag="// PROJECTS">
+    <div class="status-num">9+</div>
+    <div class="status-label">Projects shipped</div>
+  </div>
+  <div class="status-item" data-tag="// CLIENT WORK">
+    <div class="status-num">4</div>
+    <div class="status-label">Client deliverables</div>
+  </div>
+  <div class="status-item" data-tag="// STACK">
+    <div class="status-num">7+</div>
+    <div class="status-label">Tech stacks mastered</div>
   </div>
 </div>
 
-<div class="divider"></div>
-
-<!-- STATS -->
+<!-- ABOUT -->
 <section id="about">
-  <div class="section-label">By the numbers</div>
-  <div class="highlights">
-    <div class="highlight-item">
-      <div class="highlight-num">8+</div>
-      <div class="highlight-label">Projects shipped</div>
-    </div>
-    <div class="highlight-item">
-      <div class="highlight-num">3</div>
-      <div class="highlight-label">Client deliverables</div>
-    </div>
-    <div class="highlight-item">
-      <div class="highlight-num">7+</div>
-      <div class="highlight-label">Tech stacks mastered</div>
-    </div>
-  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="section-label">01 — About</div>
+    <h2 class="section-title">Workflow engineer &amp; agentic AI builder</h2>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
-    <div>
-      <div class="section-label">About me</div>
-      <h2 class="section-title" style="font-size:1.8rem;">Workflow engineer &amp; agentic AI builder</h2>
-      <p style="color:var(--text2);line-height:1.75;font-size:0.95rem;margin-top:1rem;">
-        5 years as an Automation Engineer in enterprise RPA — delivering at scale for
-        <span style="color:var(--text);font-weight:500;">Cognizant (India)</span>,
-        <span style="color:var(--text);font-weight:500;">Deloitte (UK)</span>, and
-        <span style="color:var(--text);font-weight:500;">LTI (USA)</span>.
-        I've shipped production automation across global clients, and now I've brought that same
-        rigour into the world of agentic AI.
-      </p>
-      <p style="color:var(--text2);line-height:1.75;font-size:0.95rem;margin-top:1rem;">
-        The migration from RPA to AI wasn't a pivot — it was a natural evolution. I understand
-        how enterprise systems break, how workflows fail at 2am, and why error handling matters
-        more than the happy path. That mindset now powers every multi-agent system, RAG pipeline,
-        and n8n automation I build.
-      </p>
-      <p style="color:var(--text2);line-height:1.75;font-size:0.95rem;margin-top:1rem;">
-        I don't just prototype. I build things that actually run in production.
-      </p>
-    </div>
-    <div>
-      <div class="section-label">Core stack</div>
-      <div style="display:flex;flex-direction:column;gap:1rem;margin-top:1.2rem;">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:0.75rem;border-bottom:1px solid var(--border);">
-          <span style="font-size:0.9rem;color:var(--text2);">Agentic AI</span>
-          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);">AutoGen · LangChain</span>
+    <div class="about-grid">
+      <div class="about-copy">
+        <p>
+          <strong>5 years</strong> as an Automation Engineer in enterprise RPA — delivering at scale
+          for Cognizant (India), Deloitte (UK), and LTI (USA). I've shipped production automation
+          across global clients, and now I've brought that same rigour into the world of agentic AI.
+        </p>
+        <p>
+          The migration from RPA to AI wasn't a pivot — it was a natural evolution. I understand how
+          enterprise systems break, how workflows fail at 2am, and why error handling matters more
+          than the happy path. That mindset now powers every multi-agent system, RAG pipeline, and
+          n8n automation I build.
+        </p>
+        <p>I don't just prototype. I build things that actually run in production.</p>
+      </div>
+
+      <div class="stack-panel">
+        <div class="stack-row">
+          <span class="stack-row-label">Agentic AI</span>
+          <span class="stack-row-value"><b>AutoGen</b> · LangChain</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:0.75rem;border-bottom:1px solid var(--border);">
-          <span style="font-size:0.9rem;color:var(--text2);">RAG / Knowledge</span>
-          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);">Neo4j · ChromaDB</span>
+        <div class="stack-row">
+          <span class="stack-row-label">RAG / Knowledge</span>
+          <span class="stack-row-value"><b>Neo4j</b> · ChromaDB</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:0.75rem;border-bottom:1px solid var(--border);">
-          <span style="font-size:0.9rem;color:var(--text2);">Automation</span>
-          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);">n8n · MCP</span>
+        <div class="stack-row">
+          <span class="stack-row-label">Automation</span>
+          <span class="stack-row-value"><b>n8n</b> · MCP</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:0.75rem;border-bottom:1px solid var(--border);">
-          <span style="font-size:0.9rem;color:var(--text2);">Full stack</span>
-          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);">Python · Next.js · Supabase</span>
+        <div class="stack-row">
+          <span class="stack-row-label">Full stack</span>
+          <span class="stack-row-value"><b>Python</b> · Next.js · Supabase</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:0.9rem;color:var(--text2);">LLMs</span>
-          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);">GPT-4o · Claude · Ollama</span>
+        <div class="stack-row">
+          <span class="stack-row-label">LLMs</span>
+          <span class="stack-row-value"><b>GPT-4o</b> · Claude · Ollama</span>
         </div>
       </div>
     </div>
@@ -657,312 +734,342 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label">Portfolio</div>
-  <h2 class="section-title">Projects</h2>
-  <p class="section-desc">A mix of client deliverables and personal builds — each designed to solve a real problem with production-grade architecture.</p>
+  <div class="wrap" style="padding:0;">
+    <div class="section-label">02 — Projects</div>
+    <h2 class="section-title">Selected builds</h2>
+    <p class="section-desc">
+      A mix of client deliverables and personal builds — each designed to solve a real problem
+      with production-grade architecture.
+    </p>
 
-  <div class="projects-grid">
+    <div class="projects-grid">
 
-    <!-- CLIENT: AI Podcast -->
-    <div class="project-card">
-      <div class="card-header">
-        <div>
-          <div class="card-badges">
-            <span class="badge badge-client">⭐ Client Deliverable</span>
-            <span class="badge badge-n8n">n8n</span>
-            <span class="badge badge-ai">AI</span>
-          </div>
-          <h3 class="project-title">AI Podcast Generator</h3>
-        </div>
-        <span class="project-num">01</span>
-      </div>
-      <p class="project-desc">
-        End-to-end automated podcast creation pipeline. Researches a topic, writes a script with multiple
-        speaker voices, generates AI audio, and delivers a complete podcast episode — all without human
-        intervention. Delivered as a client automation workflow.
-      </p>
-      <div class="project-stack">
-        <span class="stack-tag">n8n</span>
-        <span class="stack-tag">ElevenLabs</span>
-        <span class="stack-tag">GPT-4o</span>
-        <span class="stack-tag">Audio AI</span>
-      </div>
-      <div class="project-links">
-        <a href="https://drive.google.com/file/d/1_lpJdwFXs6-vroDMSG0uo9K28HhAiuqu/view?usp=gmail" target="_blank" class="link-btn link-drive">
-          <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
-          Watch Demo
-        </a>
-      </div>
-    </div>
-
-    <!-- CLIENT: Lead Generation / Enrichment -->
-    <div class="project-card">
-      <div class="card-header">
-        <div>
-          <div class="card-badges">
-            <span class="badge badge-client">⭐ Client Deliverable</span>
-            <span class="badge badge-n8n">n8n</span>
-            <span class="badge badge-ai">AI</span>
-          </div>
-          <h3 class="project-title">AI Lead Enrichment Pipeline</h3>
-        </div>
-        <span class="project-num">02</span>
-      </div>
-      <p class="project-desc">
-        Automated lead generation and enrichment system. Ingests raw lead data, enriches it through
-        multiple data sources using AI, scores and qualifies leads, and routes them into CRM workflows
-        automatically. Built for a client's sales team to eliminate manual prospecting.
-      </p>
-      <div class="project-stack">
-        <span class="stack-tag">n8n</span>
-        <span class="stack-tag">OpenAI</span>
-        <span class="stack-tag">CRM Integration</span>
-        <span class="stack-tag">APIs</span>
-      </div>
-      <div class="project-links">
-        <a href="https://www.loom.com/share/66d19968732a4cada1d036508497a6c0" target="_blank" class="link-btn link-demo">
-          <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
-          Watch Demo
-        </a>
-      </div>
-    </div>
-
-    <!-- CLIENT: AI SEO Blog -->
-    <div class="project-card">
-      <div class="card-header">
-        <div>
-          <div class="card-badges">
-            <span class="badge badge-client">⭐ Client Deliverable</span>
-            <span class="badge badge-n8n">n8n</span>
-            <span class="badge badge-ai">AI</span>
-          </div>
-          <h3 class="project-title">AI SEO Blog Creation</h3>
-        </div>
-        <span class="project-num">03</span>
-      </div>
-      <p class="project-desc">
-        Fully automated SEO blog content pipeline. Takes a keyword or topic, researches competitors and
-        SERP data, generates SEO-optimised long-form blog posts with structured headings, internal links,
-        and meta content — then publishes directly to the CMS. Delivered as a client content automation system.
-      </p>
-      <div class="project-stack">
-        <span class="stack-tag">n8n</span>
-        <span class="stack-tag">GPT-4o</span>
-        <span class="stack-tag">SEO APIs</span>
-        <span class="stack-tag">CMS Integration</span>
-      </div>
-      <div class="project-links">
-        <span style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace;">Demo available on request</span>
-      </div>
-    </div>
-
-    <!-- Newsletter Bot -->
-    <div class="project-card">
-      <div class="card-header">
-        <div>
-          <div class="card-badges">
-            <span class="badge badge-personal">Personal Build</span>
-            <span class="badge badge-n8n">n8n</span>
-          </div>
-          <h3 class="project-title">N8N Newsletter Bot</h3>
-        </div>
-        <span class="project-num">04</span>
-      </div>
-      <p class="project-desc">
-        Multi-step n8n workflow triggered by a Slack message. Aggregates news from 3 REST APIs,
-        fetches stock imagery, generates an AI-powered HTML newsletter, sends real-time Slack status
-        notifications, and delivers via Gmail OAuth2. Includes conditional branching and retry logic.
-      </p>
-      <div class="project-stack">
-        <span class="stack-tag">n8n</span>
-        <span class="stack-tag">GPT-4o-mini</span>
-        <span class="stack-tag">Slack API</span>
-        <span class="stack-tag">Gmail OAuth2</span>
-        <span class="stack-tag">JavaScript</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/JeyaAlagappan/N8N_Newsletter_Bot" target="_blank" class="link-btn link-github">
-          <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-          GitHub
-        </a>
-        <a href="https://www.loom.com/share/5cdbc25096604e1e8c105956e23c653f" target="_blank" class="link-btn link-demo">
-          <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
-          Watch Demo
-        </a>
-      </div>
-    </div>
-
-    <!-- Multi-Agent Travel Agency - FULL WIDTH -->
-    <div class="project-card full-width">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;">
-        <div>
-          <div class="card-header">
-            <div>
-              <div class="card-badges">
-                <span class="badge badge-personal">Personal Build</span>
-                <span class="badge badge-python">Python</span>
-                <span class="badge badge-ai">Multi-Agent</span>
-              </div>
-              <h3 class="project-title">AI Travel Assistant</h3>
+      <!-- CLIENT: AI Podcast Generator -->
+      <div class="project-card is-client">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-client">★ Client</span>
+              <span class="badge">n8n</span>
+              <span class="badge">AI</span>
             </div>
-            <span class="project-num">05</span>
+            <h3 class="project-title">AI Podcast Generator</h3>
           </div>
-          <p class="project-desc" style="margin-top:0.75rem;">
-            7-agent orchestration system built with AutoGen SelectorGroupChat. Coordinates a TravelCoordinator,
-            FlightAgent (Aviationstack API), HotelAgent (Xotelo API), WeatherAgent (OpenWeatherMap),
-            ItineraryAgent, BudgetAgent, and SummaryAgent that emails the full plan. Includes feedback loops
-            that re-trigger only the relevant agents — not the full pipeline.
-          </p>
+          <span class="project-num">MOD·01</span>
         </div>
-        <div>
-          <div style="margin-top:2rem;">
-            <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">Agent architecture</div>
-            <div style="display:flex;flex-direction:column;gap:6px;">
-              <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text2);">
-                <span style="width:24px;height:24px;background:rgba(124,109,250,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--accent2);">1</span>
-                TravelCoordinator — orchestration + delegation
+        <p class="project-desc">
+          End-to-end automated podcast creation pipeline. Researches a topic, writes a script with
+          multiple speaker voices, generates AI audio, and delivers a complete podcast episode —
+          all without human intervention. Delivered as a client automation workflow.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">n8n</span>
+          <span class="stack-tag">ElevenLabs</span>
+          <span class="stack-tag">GPT-4o</span>
+          <span class="stack-tag">Audio AI</span>
+        </div>
+        <div class="project-links">
+          <a href="https://drive.google.com/file/d/1_lpJdwFXs6-vroDMSG0uo9K28HhAiuqu/view?usp=gmail" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
+            Watch Demo
+          </a>
+        </div>
+      </div>
+
+      <!-- CLIENT: Content Intelligence Engine -->
+      <div class="project-card is-client full-width">
+        <div class="fw-grid">
+          <div>
+            <div class="card-header">
+              <div>
+                <div class="card-badges">
+                  <span class="badge badge-client">★ Client</span>
+                  <span class="badge">n8n</span>
+                  <span class="badge">AI</span>
+                </div>
+                <h3 class="project-title">Content Intelligence Engine</h3>
               </div>
-              <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text2);">
-                <span style="width:24px;height:24px;background:rgba(124,109,250,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--accent2);">2</span>
-                FlightAgent — live Aviationstack API
-              </div>
-              <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text2);">
-                <span style="width:24px;height:24px;background:rgba(124,109,250,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--accent2);">3</span>
-                HotelAgent — live Xotelo pricing
-              </div>
-              <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text2);">
-                <span style="width:24px;height:24px;background:rgba(124,109,250,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--accent2);">4</span>
-                WeatherAgent + ItineraryAgent + BudgetAgent
-              </div>
-              <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text2);">
-                <span style="width:24px;height:24px;background:rgba(45,212,191,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--teal);">7</span>
-                SummaryAgent — emails full plan to user
-              </div>
+              <span class="project-num">MOD·02</span>
+            </div>
+            <p class="project-desc">
+              Fully automated 5-flow n8n pipeline that researches AI-industry news every weekday
+              morning and turns it into three ready-to-use outputs — a structured research briefing,
+              a branded PDF newsletter, and a two-voice conversational podcast episode. Reads full
+              articles rather than headlines, deduplicates overlapping stories, and keeps only the
+              strongest source per story. Fully config-driven via Google Sheets, and extends an
+              existing Gmail email-to-podcast workflow with built-in error logging and failure alerts.
+            </p>
+            <div class="project-stack">
+              <span class="stack-tag">n8n</span>
+              <span class="stack-tag">Google Sheets</span>
+              <span class="stack-tag">Google Drive</span>
+              <span class="stack-tag">GPT-4o</span>
+              <span class="stack-tag">Transistor</span>
+              <span class="stack-tag">Gmail</span>
+            </div>
+            <div class="project-links">
+              <span class="no-demo">Demo available on request</span>
             </div>
           </div>
+          <div class="flow-block" style="margin-top:2.6rem;">
+            <div class="flow-label">5-flow pipeline</div>
+            <div class="flow-step"><span class="dot">1</span><span><span class="step-title">Research Engine</span> — gathers, filters &amp; dedupes daily AI news</span></div>
+            <div class="flow-step"><span class="dot">2</span><span><span class="step-title">PDF Newsletter</span> — formats briefing, saves to Drive</span></div>
+            <div class="flow-step"><span class="dot">3</span><span><span class="step-title">Podcast Script</span> — rewrites briefing as a two-voice script</span></div>
+            <div class="flow-step"><span class="dot">4</span><span><span class="step-title">Audio Generation</span> — TTS, intro/outro music, transcript</span></div>
+            <div class="flow-step"><span class="dot last">5</span><span><span class="step-title">Publishing</span> — goes live on a private Transistor feed</span></div>
+          </div>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:1rem;margin-top:1.2rem;flex-wrap:wrap;">
-        <div class="project-stack" style="margin-top:0;">
+
+      <!-- CLIENT: Lead Generation / Enrichment -->
+      <div class="project-card is-client">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-client">★ Client</span>
+              <span class="badge">n8n</span>
+              <span class="badge">AI</span>
+            </div>
+            <h3 class="project-title">AI Lead Enrichment Pipeline</h3>
+          </div>
+          <span class="project-num">MOD·03</span>
+        </div>
+        <p class="project-desc">
+          Automated lead generation and enrichment system. Ingests raw lead data, enriches it through
+          multiple data sources using AI, scores and qualifies leads, and routes them into CRM
+          workflows automatically. Built for a client's sales team to eliminate manual prospecting.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">n8n</span>
+          <span class="stack-tag">OpenAI</span>
+          <span class="stack-tag">CRM Integration</span>
+          <span class="stack-tag">APIs</span>
+        </div>
+        <div class="project-links">
+          <a href="https://www.loom.com/share/66d19968732a4cada1d036508497a6c0" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
+            Watch Demo
+          </a>
+        </div>
+      </div>
+
+      <!-- CLIENT: AI SEO Blog -->
+      <div class="project-card is-client">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-client">★ Client</span>
+              <span class="badge">n8n</span>
+              <span class="badge">AI</span>
+            </div>
+            <h3 class="project-title">AI SEO Blog Creation</h3>
+          </div>
+          <span class="project-num">MOD·04</span>
+        </div>
+        <p class="project-desc">
+          Fully automated SEO blog content pipeline. Takes a keyword or topic, researches competitors
+          and SERP data, generates SEO-optimised long-form blog posts with structured headings,
+          internal links, and meta content — then publishes directly to the CMS.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">n8n</span>
+          <span class="stack-tag">GPT-4o</span>
+          <span class="stack-tag">SEO APIs</span>
+          <span class="stack-tag">CMS Integration</span>
+        </div>
+        <div class="project-links">
+          <span class="no-demo">Demo available on request</span>
+        </div>
+      </div>
+
+      <!-- Newsletter Bot -->
+      <div class="project-card is-personal">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-personal">○ Personal</span>
+              <span class="badge">n8n</span>
+            </div>
+            <h3 class="project-title">N8N Newsletter Bot</h3>
+          </div>
+          <span class="project-num">MOD·05</span>
+        </div>
+        <p class="project-desc">
+          Multi-step n8n workflow triggered by a Slack message. Aggregates news from 3 REST APIs,
+          fetches stock imagery, generates an AI-powered HTML newsletter, sends real-time Slack
+          status notifications, and delivers via Gmail OAuth2.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">n8n</span>
+          <span class="stack-tag">GPT-4o-mini</span>
+          <span class="stack-tag">Slack API</span>
+          <span class="stack-tag">Gmail OAuth2</span>
+          <span class="stack-tag">JavaScript</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/JeyaAlagappan/N8N_Newsletter_Bot" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.loom.com/share/5cdbc25096604e1e8c105956e23c653f" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
+            Watch Demo
+          </a>
+        </div>
+      </div>
+
+      <!-- Multi-Agent Travel Agency - FULL WIDTH -->
+      <div class="project-card is-personal full-width">
+        <div class="fw-grid">
+          <div>
+            <div class="card-header">
+              <div>
+                <div class="card-badges">
+                  <span class="badge badge-personal">○ Personal</span>
+                  <span class="badge">Python</span>
+                  <span class="badge">Multi-Agent</span>
+                </div>
+                <h3 class="project-title">AI Travel Assistant</h3>
+              </div>
+              <span class="project-num">MOD·06</span>
+            </div>
+            <p class="project-desc">
+              7-agent orchestration system built with AutoGen SelectorGroupChat. Coordinates a
+              TravelCoordinator, FlightAgent (Aviationstack API), HotelAgent (Xotelo API),
+              WeatherAgent (OpenWeatherMap), ItineraryAgent, BudgetAgent, and SummaryAgent that
+              emails the full plan. Includes feedback loops that re-trigger only the relevant
+              agents — not the full pipeline.
+            </p>
+            <div class="project-stack">
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">AutoGen 0.7.5</span>
+              <span class="stack-tag">GPT-4.1</span>
+              <span class="stack-tag">Streamlit</span>
+              <span class="stack-tag">3 Live APIs</span>
+              <span class="stack-tag">Gmail SMTP</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/JeyaAlagappan/Multi-Agent-Travel-Agency" target="_blank" class="link-btn">
+                <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+          <div class="flow-block" style="margin-top:2.6rem;">
+            <div class="flow-label">Agent architecture</div>
+            <div class="flow-step"><span class="dot">1</span>TravelCoordinator — orchestration + delegation</div>
+            <div class="flow-step"><span class="dot">2</span>FlightAgent — live Aviationstack API</div>
+            <div class="flow-step"><span class="dot">3</span>HotelAgent — live Xotelo pricing</div>
+            <div class="flow-step"><span class="dot">4</span>WeatherAgent + ItineraryAgent + BudgetAgent</div>
+            <div class="flow-step"><span class="dot last">7</span>SummaryAgent — emails full plan to user</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Estate Agent -->
+      <div class="project-card is-personal">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-personal">○ Personal</span>
+              <span class="badge">Hybrid RAG</span>
+              <span class="badge">Python</span>
+            </div>
+            <h3 class="project-title">Real Estate Intelligence Agent</h3>
+          </div>
+          <span class="project-num">MOD·07</span>
+        </div>
+        <p class="project-desc">
+          Hybrid RAG system combining a Knowledge Graph (Neo4j) with Vector Search (ChromaDB). A
+          smart router classifies each query as structured, semantic, or hybrid and dispatches to
+          the right engine. Corrective RAG rewriting kicks in when retrieval confidence drops
+          below 0.45. Covers 100 Chennai real estate projects.
+        </p>
+        <div class="project-stack">
           <span class="stack-tag">Python</span>
-          <span class="stack-tag">AutoGen 0.7.5</span>
-          <span class="stack-tag">GPT-4.1</span>
+          <span class="stack-tag">Neo4j</span>
+          <span class="stack-tag">ChromaDB</span>
+          <span class="stack-tag">LangChain</span>
           <span class="stack-tag">Streamlit</span>
-          <span class="stack-tag">3 Live APIs</span>
-          <span class="stack-tag">Gmail SMTP</span>
+          <span class="stack-tag">GPT-4o-mini</span>
         </div>
-        <div class="project-links" style="margin-top:0;">
-          <a href="https://github.com/JeyaAlagappan/Multi-Agent-Travel-Agency" target="_blank" class="link-btn link-github">
+        <div class="project-links">
+          <a href="https://github.com/JeyaAlagappan/Real_Estate_Agent" target="_blank" class="link-btn">
             <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
             GitHub
           </a>
         </div>
       </div>
-    </div>
 
-    <!-- Real Estate Agent -->
-    <div class="project-card">
-      <div class="card-header">
-        <div>
-          <div class="card-badges">
-            <span class="badge badge-personal">Personal Build</span>
-            <span class="badge badge-rag">Hybrid RAG</span>
-            <span class="badge badge-python">Python</span>
+      <!-- HackerNews Trend Analyser -->
+      <div class="project-card is-personal">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-personal">○ Personal</span>
+              <span class="badge">Python</span>
+              <span class="badge">Multi-Agent</span>
+            </div>
+            <h3 class="project-title">HackerNews Trend Analyser</h3>
           </div>
-          <h3 class="project-title">Real Estate Intelligence Agent</h3>
+          <span class="project-num">MOD·08</span>
         </div>
-        <span class="project-num">06</span>
+        <p class="project-desc">
+          4-agent pipeline — NewsFetcher, TrendAnalyzer, ContentWriter, Editor — that fetches HN top
+          stories, identifies tech &amp; cybersecurity trends, and produces polished editorial
+          summaries. Built with AutoGen RoundRobinGroupChat and a custom state manager for crash
+          recovery.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">AutoGen</span>
+          <span class="stack-tag">GPT-4</span>
+          <span class="stack-tag">httpx async</span>
+          <span class="stack-tag">MCP</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/JeyaAlagappan/HackerNews_TrendAnalyser" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
       </div>
-      <p class="project-desc">
-        Hybrid RAG system combining a Knowledge Graph (Neo4j) with Vector Search (ChromaDB). A smart router
-        classifies each query as structured, semantic, or hybrid and dispatches to the right engine.
-        Corrective RAG rewriting kicks in when retrieval confidence drops below 0.45. Covers 100 Chennai
-        real estate projects across OMR, Velachery, Anna Nagar and more.
-      </p>
-      <div class="project-stack">
-        <span class="stack-tag">Python</span>
-        <span class="stack-tag">Neo4j</span>
-        <span class="stack-tag">ChromaDB</span>
-        <span class="stack-tag">LangChain</span>
-        <span class="stack-tag">Streamlit</span>
-        <span class="stack-tag">GPT-4o-mini</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/JeyaAlagappan/Real_Estate_Agent" target="_blank" class="link-btn link-github">
-          <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-          GitHub
-        </a>
-      </div>
-    </div>
 
-    <!-- HackerNews Trend Analyser -->
-    <div class="project-card">
-      <div class="card-header">
-        <div>
-          <div class="card-badges">
-            <span class="badge badge-personal">Personal Build</span>
-            <span class="badge badge-python">Python</span>
-            <span class="badge badge-ai">Multi-Agent</span>
+      <!-- Local SQL Agent -->
+      <div class="project-card is-personal">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-personal">○ Personal</span>
+              <span class="badge">Python</span>
+              <span class="badge">Local LLM</span>
+            </div>
+            <h3 class="project-title">Local SQL Agent</h3>
           </div>
-          <h3 class="project-title">HackerNews Trend Analyser</h3>
+          <span class="project-num">MOD·09</span>
         </div>
-        <span class="project-num">07</span>
-      </div>
-      <p class="project-desc">
-        4-agent pipeline — NewsFetcher, TrendAnalyzer, ContentWriter, Editor — that fetches HN top stories,
-        identifies tech & cybersecurity trends, and produces polished editorial summaries. Built with AutoGen
-        RoundRobinGroupChat, async httpx, and a custom state manager that serialises session state to JSON
-        for crash recovery. Includes per-module daily rotating logs.
-      </p>
-      <div class="project-stack">
-        <span class="stack-tag">Python</span>
-        <span class="stack-tag">AutoGen</span>
-        <span class="stack-tag">GPT-4</span>
-        <span class="stack-tag">httpx async</span>
-        <span class="stack-tag">MCP</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/JeyaAlagappan/HackerNews_TrendAnalyser" target="_blank" class="link-btn link-github">
-          <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-          GitHub
-        </a>
-      </div>
-    </div>
-
-    <!-- Local SQL Agent -->
-    <div class="project-card">
-      <div class="card-header">
-        <div>
-          <div class="card-badges">
-            <span class="badge badge-personal">Personal Build</span>
-            <span class="badge badge-python">Python</span>
-            <span class="badge badge-ai">Local LLM</span>
-          </div>
-          <h3 class="project-title">Local SQL Agent</h3>
+        <p class="project-desc">
+          Talk to any database in plain English — 100% offline, 100% private. Uses a local LLM
+          (Ollama) to convert natural language questions into SQL queries and return results. No
+          cloud API calls, no data leaving your machine.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Ollama</span>
+          <span class="stack-tag">LangChain</span>
+          <span class="stack-tag">SQL</span>
+          <span class="stack-tag">Local LLM</span>
         </div>
-        <span class="project-num">08</span>
+        <div class="project-links">
+          <a href="https://github.com/JeyaAlagappan/Local_Sql_Agent" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
       </div>
-      <p class="project-desc">
-        Talk to any database in plain English — 100% offline, 100% private. Uses a local LLM (Ollama)
-        to convert natural language questions into SQL queries and return results. No cloud API calls,
-        no data leaving your machine. Perfect for sensitive business data.
-      </p>
-      <div class="project-stack">
-        <span class="stack-tag">Python</span>
-        <span class="stack-tag">Ollama</span>
-        <span class="stack-tag">LangChain</span>
-        <span class="stack-tag">SQL</span>
-        <span class="stack-tag">Local LLM</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/JeyaAlagappan/Local_Sql_Agent" target="_blank" class="link-btn link-github">
-          <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-          GitHub
-        </a>
-      </div>
+
     </div>
-
-
   </div>
 </section>
 
@@ -970,33 +1077,27 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">Get in touch</div>
-  <h2 class="section-title">Let's build something</h2>
-  <p class="section-desc">
-    Open to agentic AI engineering roles, freelance automation projects, and n8n / AI workflow consulting.
-    I'm especially interested in projects that combine multi-agent systems with real-world data.
-  </p>
+  <div class="wrap" style="padding:0;">
+    <div class="section-label">03 — Contact</div>
+    <h2 class="section-title">Let's build something</h2>
+    <p class="section-desc">
+      Open to agentic AI engineering roles, freelance automation projects, and n8n / AI workflow
+      consulting. I'm especially interested in projects that combine multi-agent systems with
+      real-world data.
+    </p>
 
-  <div class="contact-grid">
-    <div class="contact-card">
-      <span class="contact-label">Email</span>
-      <a href="mailto:jeyaalagappan@gmail.com" class="contact-value">jeyaalagappan@gmail.com ↗</a>
-    </div>
-    <div class="contact-card">
-      <span class="contact-label">Phone</span>
-      <a href="tel:+919487723712" class="contact-value">+91 94877 23712</a>
-    </div>
-    <div class="contact-card">
-      <span class="contact-label">GitHub</span>
-      <a href="https://github.com/JeyaAlagappan" target="_blank" class="contact-value">github.com/JeyaAlagappan ↗</a>
-    </div>
-    <div class="contact-card">
-      <span class="contact-label">Location</span>
-      <span class="contact-value">Chennai, Tamil Nadu, India</span>
-    </div>
-    <div class="contact-card" style="grid-column:1/-1;">
-      <span class="contact-label">Availability</span>
-      <span class="contact-value" style="color:var(--green);">● Open to work — agentic AI engineering & automation projects</span>
+    <div class="term">
+      <div class="term-bar">
+        <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+        <span class="term-title">contact.sh</span>
+      </div>
+      <div class="term-body">
+        <div class="term-line"><span class="term-prompt">$</span><span class="term-key">email</span> <a href="mailto:jeyaalagappan@gmail.com" class="term-val">jeyaalagappan@gmail.com ↗</a></div>
+        <div class="term-line"><span class="term-prompt">$</span><span class="term-key">phone</span> <a href="tel:+919487723712" class="term-val">+91 94877 23712</a></div>
+        <div class="term-line"><span class="term-prompt">$</span><span class="term-key">github</span> <a href="https://github.com/JeyaAlagappan" target="_blank" class="term-val">github.com/JeyaAlagappan ↗</a></div>
+        <div class="term-line"><span class="term-prompt">$</span><span class="term-key">location</span> <span class="term-val">Chennai, Tamil Nadu, India</span></div>
+        <div class="term-line"><span class="term-prompt">$</span><span class="term-key">status</span> <span class="term-status">● open to work</span><span class="cursor-blink"></span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1004,8 +1105,47 @@
 <!-- FOOTER -->
 <footer>
   <p>© 2026 Jeya AL. Built with intention.</p>
-  <span class="footer-accent">Jeya AL · AI & Automation Engineer · Chennai</span>
+  <span class="footer-accent">Jeya AL · AI &amp; Automation Engineer · Chennai</span>
 </footer>
+
+<script>
+  // Signal-rail: fill + active node track scroll position
+  (function () {
+    var fill = document.getElementById('railFill');
+    var nodes = document.querySelectorAll('.rail-node');
+    var sections = ['hero', 'about', 'projects', 'contact'].map(function (id) {
+      return document.getElementById(id);
+    });
+
+    function onScroll() {
+      var doc = document.documentElement;
+      var scrollTop = doc.scrollTop || document.body.scrollTop;
+      var scrollHeight = (doc.scrollHeight - doc.clientHeight) || 1;
+      var pct = Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100));
+      if (fill) fill.style.height = pct + '%';
+
+      var current = sections[0];
+      sections.forEach(function (sec) {
+        if (sec && sec.getBoundingClientRect().top - window.innerHeight * 0.4 <= 0) {
+          current = sec;
+        }
+      });
+      nodes.forEach(function (node) {
+        node.classList.toggle('active', current && node.dataset.section === current.id);
+      });
+    }
+
+    nodes.forEach(function (node) {
+      node.addEventListener('click', function () {
+        var target = document.getElementById(node.dataset.section);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
 
 </body>
 </html>
