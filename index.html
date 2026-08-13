@@ -9,22 +9,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0c10;
-    --bg2: #0e1116;
-    --panel: #12151c;
-    --panel2: #161a22;
-    --line: rgba(148,163,184,0.09);
-    --line-strong: rgba(148,163,184,0.18);
-    --text: #e7e9f0;
-    --text2: #8d93a6;
-    --text3: #4d5264;
+    --bg: #0a0b14;
+    --bg2: #10101c;
+    --panel: #151425;
+    --panel2: #1a1830;
+    --line: rgba(168,163,255,0.10);
+    --line-strong: rgba(178,173,255,0.20);
+    --text: #eceafc;
+    --text2: #948fc2;
+    --text3: #524d80;
     --copper: #ff8c4a;
     --copper-soft: #ffb385;
     --copper-dim: rgba(255,140,74,0.14);
-    --signal: #4fe0c4;
-    --signal-dim: rgba(79,224,196,0.14);
-    --gold: #f2c14e;
-    --gold-dim: rgba(242,193,78,0.14);
+    --signal: #38f0c6;
+    --signal-dim: rgba(56,240,198,0.14);
+    --gold: #ffd23f;
+    --gold-dim: rgba(255,210,63,0.15);
+    --violet: #b98cff;
+    --violet-soft: #d3b8ff;
+    --violet-dim: rgba(185,140,255,0.16);
+    --azure: #4fa3ff;
+    --azure-soft: #8cc4ff;
+    --azure-dim: rgba(79,163,255,0.14);
+    --rose: #ff6ea8;
+    --rose-dim: rgba(255,110,168,0.15);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,6 +57,20 @@
       linear-gradient(var(--line) 1px, transparent 1px),
       linear-gradient(90deg, var(--line) 1px, transparent 1px);
     background-size: 64px 64px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ambient color blooms */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(680px 480px at 88% 4%, rgba(255,140,74,0.16), transparent 60%),
+      radial-gradient(620px 520px at 4% 38%, rgba(185,140,255,0.14), transparent 60%),
+      radial-gradient(700px 560px at 92% 72%, rgba(56,240,198,0.10), transparent 60%),
+      radial-gradient(520px 420px at 20% 96%, rgba(255,210,63,0.08), transparent 60%);
     pointer-events: none;
     z-index: 0;
   }
@@ -85,7 +107,7 @@
     top: 0; left: 0;
     width: 100%;
     height: 0%;
-    background: linear-gradient(180deg, var(--copper), var(--signal));
+    background: linear-gradient(180deg, var(--copper), var(--violet), var(--signal));
     transition: height 0.15s linear;
   }
 
@@ -181,17 +203,19 @@
     pointer-events: none;
   }
   .hero-schematic .trace { fill: none; stroke: var(--line-strong); stroke-width: 1.4; }
-  .hero-schematic .trace.copper { stroke: var(--copper); stroke-opacity: 0.4; stroke-dasharray: 6 10; animation: dash 6s linear infinite; }
-  .hero-schematic .trace.signal { stroke: var(--signal); stroke-opacity: 0.35; stroke-dasharray: 4 9; animation: dash 8s linear infinite reverse; }
+  .hero-schematic .trace.copper { stroke: var(--copper); stroke-opacity: 0.5; stroke-dasharray: 6 10; animation: dash 6s linear infinite; }
+  .hero-schematic .trace.signal { stroke: var(--signal); stroke-opacity: 0.45; stroke-dasharray: 4 9; animation: dash 8s linear infinite reverse; }
+  .hero-schematic .trace.violet { stroke: var(--violet); stroke-opacity: 0.4; stroke-dasharray: 5 11; animation: dash 9.5s linear infinite; }
   .hero-schematic .node { fill: var(--bg2); stroke: var(--text3); stroke-width: 1.4; }
   .hero-schematic .node.lit { fill: var(--copper); stroke: var(--copper); animation: nodepulse 2.6s ease-in-out infinite; }
   .hero-schematic .node.lit2 { fill: var(--signal); stroke: var(--signal); animation: nodepulse 3.2s ease-in-out infinite 0.6s; }
+  .hero-schematic .node.lit3 { fill: var(--violet); stroke: var(--violet); animation: nodepulse 3.6s ease-in-out infinite 1.1s; }
 
   @keyframes dash { to { stroke-dashoffset: -160; } }
   @keyframes nodepulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-schematic .trace.copper, .hero-schematic .trace.signal, .hero-schematic .node.lit, .hero-schematic .node.lit2,
+    .hero-schematic .trace.copper, .hero-schematic .trace.signal, .hero-schematic .trace.violet, .hero-schematic .node.lit, .hero-schematic .node.lit2, .hero-schematic .node.lit3,
     .nav-logo .caret, .cursor-blink { animation: none !important; }
   }
 
@@ -267,8 +291,21 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    transition: border-color 0.2s, color 0.2s;
   }
   .skill-pill::before { content: ''; width: 5px; height: 5px; background: var(--text3); border-radius: 1px; }
+  .skill-pill.c-azure { color: var(--azure-soft); border-color: rgba(79,163,255,0.3); }
+  .skill-pill.c-azure::before { background: var(--azure); box-shadow: 0 0 6px var(--azure); }
+  .skill-pill.c-violet { color: var(--violet-soft); border-color: rgba(185,140,255,0.3); }
+  .skill-pill.c-violet::before { background: var(--violet); box-shadow: 0 0 6px var(--violet); }
+  .skill-pill.c-copper { color: var(--copper-soft); border-color: rgba(255,140,74,0.3); }
+  .skill-pill.c-copper::before { background: var(--copper); box-shadow: 0 0 6px var(--copper); }
+  .skill-pill.c-signal { color: var(--signal); border-color: rgba(56,240,198,0.3); }
+  .skill-pill.c-signal::before { background: var(--signal); box-shadow: 0 0 6px var(--signal); }
+  .skill-pill.c-rose { color: var(--rose); border-color: rgba(255,110,168,0.3); }
+  .skill-pill.c-rose::before { background: var(--rose); box-shadow: 0 0 6px var(--rose); }
+  .skill-pill.c-gold { color: var(--gold); border-color: rgba(255,210,63,0.3); }
+  .skill-pill.c-gold::before { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
 
   .hero-cta { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 
@@ -276,8 +313,8 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--copper);
-    color: #0a0c10;
+    background: linear-gradient(120deg, var(--copper), var(--gold));
+    color: #0a0b14;
     text-decoration: none;
     padding: 12px 24px;
     border-radius: 3px;
@@ -285,9 +322,9 @@
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.02em;
-    transition: background 0.2s, transform 0.2s;
+    transition: filter 0.2s, transform 0.2s;
   }
-  .btn-primary:hover { background: var(--copper-soft); transform: translateY(-1px); }
+  .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
   .btn-ghost {
     display: inline-flex;
@@ -341,6 +378,9 @@
     line-height: 1;
     margin-bottom: 0.4rem;
   }
+  .status-item:nth-child(1) .status-num { color: var(--copper-soft); }
+  .status-item:nth-child(2) .status-num { color: var(--gold); }
+  .status-item:nth-child(3) .status-num { color: var(--violet-soft); }
 
   .status-label {
     font-family: 'IBM Plex Mono', monospace;
@@ -368,6 +408,9 @@
     gap: 8px;
   }
   .section-label::before { content: '◆'; font-size: 9px; }
+  #about .section-label { color: var(--violet-soft); }
+  #projects .section-label { color: var(--copper); }
+  #contact .section-label { color: var(--signal); }
 
   .section-title {
     font-family: 'Space Grotesk', sans-serif;
@@ -393,6 +436,7 @@
     width: 46px; height: 3px;
     background: var(--copper);
   }
+  .divider-alt::before { background: var(--signal); }
 
   /* ============ ABOUT ============ */
   .about-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 4rem; align-items: start; }
@@ -494,6 +538,12 @@
     padding: 3px 9px;
     border-radius: 3px;
   }
+  .stack-tag:nth-of-type(6n+1) { color: var(--copper-soft); border-color: rgba(255,140,74,0.28); }
+  .stack-tag:nth-of-type(6n+2) { color: var(--signal); border-color: rgba(56,240,198,0.28); }
+  .stack-tag:nth-of-type(6n+3) { color: var(--violet-soft); border-color: rgba(185,140,255,0.28); }
+  .stack-tag:nth-of-type(6n+4) { color: var(--azure-soft); border-color: rgba(79,163,255,0.28); }
+  .stack-tag:nth-of-type(6n+5) { color: var(--gold); border-color: rgba(255,210,63,0.28); }
+  .stack-tag:nth-of-type(6n+6) { color: var(--rose); border-color: rgba(255,110,168,0.28); }
 
   .project-links { display: flex; gap: 0.7rem; flex-wrap: wrap; align-items: center; }
 
@@ -565,12 +615,12 @@
   }
   .term-body { padding: 1.6rem 1.8rem; font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; }
   .term-line { display: flex; gap: 10px; padding: 0.5rem 0; flex-wrap: wrap; }
-  .term-prompt { color: var(--copper); flex-shrink: 0; }
+  .term-prompt { color: var(--signal); flex-shrink: 0; }
   .term-key { color: var(--text3); }
   .term-val { color: var(--text); text-decoration: none; }
-  .term-val:hover { color: var(--signal); }
+  .term-val:hover { color: var(--violet-soft); }
   .term-status { color: var(--signal); }
-  .cursor-blink { display: inline-block; width: 7px; height: 15px; background: var(--copper); vertical-align: -2px; animation: blink 1s step-end infinite; }
+  .cursor-blink { display: inline-block; width: 7px; height: 15px; background: var(--signal); vertical-align: -2px; animation: blink 1s step-end infinite; }
 
   /* ============ FOOTER ============ */
   footer {
@@ -627,6 +677,7 @@
     <path class="trace" d="M480 90 V240 H340 V380" />
     <path class="trace copper" d="M480 90 V240 H340 V380" />
     <path class="trace" d="M120 460 H300 V560" />
+    <path class="trace violet" d="M120 460 H300 V560" />
     <circle class="node lit" cx="40" cy="120" r="6" />
     <circle class="node" cx="260" cy="120" r="6" />
     <circle class="node" cx="260" cy="220" r="6" />
@@ -636,10 +687,10 @@
     <circle class="node" cx="520" cy="420" r="6" />
     <circle class="node lit2" cx="520" cy="500" r="6" />
     <circle class="node" cx="480" cy="90" r="6" />
-    <circle class="node lit" cx="480" cy="240" r="6" />
+    <circle class="node lit3" cx="480" cy="240" r="6" />
     <circle class="node" cx="340" cy="240" r="6" />
     <circle class="node" cx="340" cy="380" r="6" />
-    <circle class="node" cx="120" cy="460" r="6" />
+    <circle class="node lit3" cx="120" cy="460" r="6" />
     <circle class="node lit2" cx="300" cy="460" r="6" />
     <circle class="node" cx="300" cy="560" r="6" />
   </svg>
@@ -652,13 +703,13 @@
       RAG pipelines, and n8n automations — from prototype to production.
     </p>
     <div class="hero-skills">
-      <span class="skill-pill">Multi-Agent Systems</span>
-      <span class="skill-pill">RAG / Knowledge Bases</span>
-      <span class="skill-pill">n8n Automation</span>
-      <span class="skill-pill">LangChain · AutoGen</span>
-      <span class="skill-pill">Python · Next.js</span>
-      <span class="skill-pill">Supabase · Neo4j · ChromaDB</span>
-      <span class="skill-pill">OpenAI · Claude API</span>
+      <span class="skill-pill c-azure">Multi-Agent Systems</span>
+      <span class="skill-pill c-violet">RAG / Knowledge Bases</span>
+      <span class="skill-pill c-copper">n8n Automation</span>
+      <span class="skill-pill c-azure">LangChain · AutoGen</span>
+      <span class="skill-pill c-signal">Python · Next.js</span>
+      <span class="skill-pill c-rose">Supabase · Neo4j · ChromaDB</span>
+      <span class="skill-pill c-gold">OpenAI · Claude API</span>
     </div>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View Projects →</a>
@@ -669,11 +720,11 @@
 
 <div class="status-panel">
   <div class="status-item" data-tag="// PROJECTS">
-    <div class="status-num">9+</div>
+    <div class="status-num">10+</div>
     <div class="status-label">Projects shipped</div>
   </div>
   <div class="status-item" data-tag="// CLIENT WORK">
-    <div class="status-num">4</div>
+    <div class="status-num">5</div>
     <div class="status-label">Client deliverables</div>
   </div>
   <div class="status-item" data-tag="// STACK">
@@ -822,6 +873,41 @@
         </div>
       </div>
 
+      <!-- CLIENT: Front Desk Call Analysis -->
+      <div class="project-card is-client">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-client">★ Client</span>
+              <span class="badge">Python</span>
+              <span class="badge">AI</span>
+            </div>
+            <h3 class="project-title">Front Desk Call Analysis</h3>
+          </div>
+          <span class="project-num">MOD·03</span>
+        </div>
+        <p class="project-desc">
+          FastAPI + SQLite call-tracking system built for a 5–6 agent front-desk team at an
+          immigration law firm. Uploads call recordings, transcribes and diarizes them via an
+          admin-switchable provider (Groq / AssemblyAI / OpenAI — swappable live, no redeploy),
+          then extracts 26 structured fields (client name, case type, urgency, summary, etc.)
+          using Google Gemini. Agents review and correct extracted fields before confirming to a
+          shared Excel tracker, with encrypted credential storage and idempotent DB-sync
+          migrations to keep schema changes safe in production.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">FastAPI</span>
+          <span class="stack-tag">SQLite</span>
+          <span class="stack-tag">Google Gemini</span>
+          <span class="stack-tag">Groq</span>
+          <span class="stack-tag">AssemblyAI</span>
+          <span class="stack-tag">OpenAI</span>
+        </div>
+        <div class="project-links">
+          <span class="no-demo">Demo available on request</span>
+        </div>
+      </div>
+
       <!-- CLIENT: Lead Generation / Enrichment -->
       <div class="project-card is-client">
         <div class="card-header">
@@ -833,7 +919,7 @@
             </div>
             <h3 class="project-title">AI Lead Enrichment Pipeline</h3>
           </div>
-          <span class="project-num">MOD·03</span>
+          <span class="project-num">MOD·04</span>
         </div>
         <p class="project-desc">
           Automated lead generation and enrichment system. Ingests raw lead data, enriches it through
@@ -865,7 +951,7 @@
             </div>
             <h3 class="project-title">AI SEO Blog Creation</h3>
           </div>
-          <span class="project-num">MOD·04</span>
+          <span class="project-num">MOD·05</span>
         </div>
         <p class="project-desc">
           Fully automated SEO blog content pipeline. Takes a keyword or topic, researches competitors
@@ -893,7 +979,7 @@
             </div>
             <h3 class="project-title">N8N Newsletter Bot</h3>
           </div>
-          <span class="project-num">MOD·05</span>
+          <span class="project-num">MOD·06</span>
         </div>
         <p class="project-desc">
           Multi-step n8n workflow triggered by a Slack message. Aggregates news from 3 REST APIs,
@@ -932,7 +1018,7 @@
                 </div>
                 <h3 class="project-title">AI Travel Assistant</h3>
               </div>
-              <span class="project-num">MOD·06</span>
+              <span class="project-num">MOD·07</span>
             </div>
             <p class="project-desc">
               7-agent orchestration system built with AutoGen SelectorGroupChat. Coordinates a
@@ -978,7 +1064,7 @@
             </div>
             <h3 class="project-title">Real Estate Intelligence Agent</h3>
           </div>
-          <span class="project-num">MOD·07</span>
+          <span class="project-num">MOD·08</span>
         </div>
         <p class="project-desc">
           Hybrid RAG system combining a Knowledge Graph (Neo4j) with Vector Search (ChromaDB). A
@@ -1013,7 +1099,7 @@
             </div>
             <h3 class="project-title">HackerNews Trend Analyser</h3>
           </div>
-          <span class="project-num">MOD·08</span>
+          <span class="project-num">MOD·09</span>
         </div>
         <p class="project-desc">
           4-agent pipeline — NewsFetcher, TrendAnalyzer, ContentWriter, Editor — that fetches HN top
@@ -1047,7 +1133,7 @@
             </div>
             <h3 class="project-title">Local SQL Agent</h3>
           </div>
-          <span class="project-num">MOD·09</span>
+          <span class="project-num">MOD·10</span>
         </div>
         <p class="project-desc">
           Talk to any database in plain English — 100% offline, 100% private. Uses a local LLM
@@ -1073,7 +1159,7 @@
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="divider divider-alt"></div>
 
 <!-- CONTACT -->
 <section id="contact">
