@@ -491,30 +491,53 @@
   .projects-grid.thirds { grid-template-columns: repeat(3, 1fr); }
   @media (max-width: 1100px) { .projects-grid.thirds { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 900px) { .projects-grid.thirds { grid-template-columns: 1fr; } }
-  .projects-grid + .group-head { margin-top: 3rem; }
 
-  .group-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    padding-bottom: 0.8rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--line-strong);
+  .tabs { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .tab {
+    font: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: var(--text2);
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
   }
-  .group-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 600; }
-  .group-head.is-personal .group-title { color: var(--signal); }
-  .group-head.is-client .group-title { color: var(--gold); }
-  .group-count { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; }
-  .subgroup-head {
+  .tab:hover { color: var(--text); }
+  .tab:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }
+  .tab-count { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text3); }
+
+  .tabs-main { margin-bottom: 2rem; }
+  .tabs-main .tab {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.75rem 1.3rem;
+  }
+  .tabs-main .tab.is-personal[aria-selected="true"] { color: var(--signal); border-color: var(--signal); background: var(--signal-dim); }
+  .tabs-main .tab.is-client[aria-selected="true"] { color: var(--gold); border-color: var(--gold); background: var(--gold-dim); }
+  .tabs-main .tab[aria-selected="true"] .tab-count { color: inherit; opacity: 0.75; }
+
+  .tabs-sub { margin-bottom: 1.5rem; }
+  .tabs-sub .tab {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11.5px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--copper-soft);
-    margin-bottom: 1rem;
+    padding: 0.5rem 0.9rem;
   }
-  .projects-grid + .subgroup-head { margin-top: 2.2rem; }
+  .tabs-sub .tab[aria-selected="true"] { color: var(--copper-soft); border-color: var(--copper); background: var(--copper-dim); }
+  .tabs-sub .tab[aria-selected="true"] .tab-count { color: inherit; }
+
+  .tab-panel[hidden] { display: none; }
+  @media (max-width: 600px) {
+    .tabs { flex-wrap: nowrap; gap: 0.4rem; }
+    .tabs .tab { flex: 1 1 0; justify-content: center; white-space: nowrap; }
+    .tabs-main .tab { font-size: 0.92rem; padding: 0.65rem 0.5rem; gap: 0.4rem; }
+    .tabs-sub .tab { font-size: 10px; letter-spacing: 0.04em; padding: 0.5rem 0.4rem; gap: 0.4rem; }
+  }
 
   .card-header {
     display: flex;
@@ -816,15 +839,17 @@
     <div class="section-label">02 — Projects</div>
     <h2 class="section-title">Selected builds</h2>
     <p class="section-desc">
-      Personal builds first, then client deliverables — split into n8n automations and
-      full-stack / Python systems. Each designed to solve a real problem with production-grade
+      Personal builds and client deliverables — client work split into n8n automations and
+      Python / full-stack systems. Each designed to solve a real problem with production-grade
       architecture.
     </p>
 
-    <div class="group-head is-personal">
-      <span class="group-title">○ Personal Builds</span>
-      <span class="group-count">04 projects</span>
+    <div class="tabs tabs-main" role="tablist" aria-label="Project type">
+      <button class="tab is-personal" role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="true">○ Personal Builds <span class="tab-count">04</span></button>
+      <button class="tab is-client" role="tab" id="tab-client" aria-controls="panel-client" aria-selected="false">★ Client Builds <span class="tab-count">07</span></button>
     </div>
+
+    <div class="tab-panel" role="tabpanel" id="panel-personal" aria-labelledby="tab-personal">
     <div class="projects-grid thirds">
 
       <!-- Multi-Agent Travel Agency - FULL WIDTH -->
@@ -979,12 +1004,15 @@
 
     </div>
 
-    <div class="group-head is-client">
-      <span class="group-title">★ Client Builds</span>
-      <span class="group-count">07 projects</span>
     </div>
 
-    <div class="subgroup-head">n8n Automations</div>
+    <div class="tab-panel" role="tabpanel" id="panel-client" aria-labelledby="tab-client">
+    <div class="tabs tabs-sub" role="tablist" aria-label="Client project type">
+      <button class="tab" role="tab" id="tab-n8n" aria-controls="panel-n8n" aria-selected="true">n8n Automations <span class="tab-count">05</span></button>
+      <button class="tab" role="tab" id="tab-python" aria-controls="panel-python" aria-selected="false">Python &amp; Full-stack <span class="tab-count">02</span></button>
+    </div>
+
+    <div class="tab-panel" role="tabpanel" id="panel-n8n" aria-labelledby="tab-n8n">
     <div class="projects-grid thirds">
 
       <!-- CLIENT: Content Intelligence Engine -->
@@ -1181,7 +1209,9 @@
 
     </div>
 
-    <div class="subgroup-head">Full-stack &amp; Python</div>
+    </div>
+
+    <div class="tab-panel" role="tabpanel" id="panel-python" aria-labelledby="tab-python">
     <div class="projects-grid">
 
       <!-- CLIENT: Front Desk Call Analysis -->
@@ -1258,6 +1288,8 @@
       </div>
 
     </div>
+    </div>
+    </div>
   </div>
 </section>
 
@@ -1332,6 +1364,35 @@
 
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  })();
+
+  // Project tabs: Personal / Client, and n8n / Python within Client
+  (function () {
+    document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+      var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+
+      function select(tab, focus) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+        if (focus) tab.focus();
+      }
+
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () { select(tab); });
+        tab.addEventListener('keydown', function (e) {
+          var next = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+          if (next === null) return;
+          e.preventDefault();
+          select(tabs[(next + tabs.length) % tabs.length], true);
+        });
+      });
+
+      select(tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
+    });
   })();
 </script>
 
