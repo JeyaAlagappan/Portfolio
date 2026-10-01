@@ -4,6 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jeya Alagappan — AI &amp; Automation Engineer</title>
+<meta name="description" content="AI &amp; automation engineer building multi-agent systems, RAG pipelines and n8n automations. 5 years of enterprise RPA at Cognizant, Deloitte and LTI.">
+<link rel="canonical" href="https://jeyaalagappan.github.io/Portfolio/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0a0b14">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jeyaalagappan.github.io/Portfolio/">
+<meta property="og:title" content="Jeya Alagappan — AI &amp; Automation Engineer">
+<meta property="og:description" content="AI &amp; automation engineer building multi-agent systems, RAG pipelines and n8n automations. 5 years of enterprise RPA at Cognizant, Deloitte and LTI.">
+<meta property="og:image" content="https://jeyaalagappan.github.io/Portfolio/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Jeya Alagappan — AI &amp; Automation Engineer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jeya Alagappan — AI &amp; Automation Engineer">
+<meta name="twitter:description" content="AI &amp; automation engineer building multi-agent systems, RAG pipelines and n8n automations. 5 years of enterprise RPA at Cognizant, Deloitte and LTI.">
+<meta name="twitter:image" content="https://jeyaalagappan.github.io/Portfolio/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -179,7 +195,38 @@
   .nav-links a::before { content: '·'; color: var(--copper); font-size: 18px; line-height: 0; }
   .nav-links a:hover { color: var(--text); }
 
-  @media (max-width: 760px) { .nav-links { display: none; } }
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    color: var(--text);
+    width: 40px; height: 40px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-toggle svg { width: 18px; height: 18px; }
+  .nav-toggle .i-close { display: none; }
+  nav.open .nav-toggle .i-open { display: none; }
+  nav.open .nav-toggle .i-close { display: block; }
+
+  @media (max-width: 760px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: rgba(10,12,16,0.97);
+      border-bottom: 1px solid var(--line-strong);
+      padding: 0.4rem 0;
+    }
+    nav.open .nav-links { display: flex; }
+    .nav-links a { padding: 0.95rem 1.5rem; font-size: 13px; }
+  }
 
   /* ============ HERO ============ */
   .hero {
@@ -709,11 +756,16 @@
 
 <nav>
   <span class="nav-logo">JEYA_AL<span class="caret">_</span></span>
-  <ul class="nav-links">
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+    <svg class="i-open" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4.5h14M2 9h14M2 13.5h14"/></svg>
+    <svg class="i-close" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l10 10M14 4L4 14"/></svg>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#projects">Projects</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://github.com/JeyaAlagappan" target="_blank">GitHub ↗</a></li>
+    <li><a href="https://www.linkedin.com/in/jeyaal/" target="_blank">LinkedIn ↗</a></li>
   </ul>
 </nav>
 
@@ -764,6 +816,7 @@
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View Projects →</a>
       <a href="https://github.com/JeyaAlagappan" target="_blank" class="btn-ghost">GitHub Profile</a>
+      <a href="https://www.linkedin.com/in/jeyaal/" target="_blank" class="btn-ghost">LinkedIn</a>
     </div>
   </div>
 </section>
@@ -845,8 +898,8 @@
     </p>
 
     <div class="tabs tabs-main" role="tablist" aria-label="Project type">
-      <button class="tab is-personal" role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="true">○ Personal Builds <span class="tab-count">04</span></button>
-      <button class="tab is-client" role="tab" id="tab-client" aria-controls="panel-client" aria-selected="false">★ Client Builds <span class="tab-count">07</span></button>
+      <button class="tab is-personal" role="tab" id="tab-personal" data-hash="personal" aria-controls="panel-personal" aria-selected="true">○ Personal Builds <span class="tab-count">04</span></button>
+      <button class="tab is-client" role="tab" id="tab-client" data-hash="client" aria-controls="panel-client" aria-selected="false">★ Client Builds <span class="tab-count">07</span></button>
     </div>
 
     <div class="tab-panel" role="tabpanel" id="panel-personal" aria-labelledby="tab-personal">
@@ -1008,8 +1061,8 @@
 
     <div class="tab-panel" role="tabpanel" id="panel-client" aria-labelledby="tab-client">
     <div class="tabs tabs-sub" role="tablist" aria-label="Client project type">
-      <button class="tab" role="tab" id="tab-n8n" aria-controls="panel-n8n" aria-selected="true">n8n Automations <span class="tab-count">05</span></button>
-      <button class="tab" role="tab" id="tab-python" aria-controls="panel-python" aria-selected="false">Python &amp; Full-stack <span class="tab-count">02</span></button>
+      <button class="tab" role="tab" id="tab-n8n" data-hash="n8n" aria-controls="panel-n8n" aria-selected="true">n8n Automations <span class="tab-count">05</span></button>
+      <button class="tab" role="tab" id="tab-python" data-hash="python" aria-controls="panel-python" aria-selected="false">Python &amp; Full-stack <span class="tab-count">02</span></button>
     </div>
 
     <div class="tab-panel" role="tabpanel" id="panel-n8n" aria-labelledby="tab-n8n">
@@ -1078,16 +1131,11 @@
             </div>
             <p class="project-desc">
               Three-agent n8n pipeline that researches daily industry news, lets a human pick a
-              story via Telegram, and ghostwrites an on-brand LinkedIn post with an AI-generated
-              hero image and carousel — then publishes through Buffer after approval. The core
-              problem wasn't generation, it was trust: a second-pass model verifies every summary
-              against the real source article rather than the model's own citation, a deterministic
-              gate rejects any story whose URL doesn't match the search API's real results, and the
-              pipeline auto-regenerates once before ever bothering the human reviewer. Diagnosing a
-              race condition between two parallel execution branches — traced via n8n's REST API
-              down to the millisecond — meant moving the insert/skip decision into the SQL layer
-              instead of a graph-level branch, eliminating it outright rather than papering over it
-              with a longer wait.
+              story via Telegram, and ghostwrites an on-brand LinkedIn post with an AI hero image
+              and carousel — published through Buffer after approval. Built around trust: a
+              second-pass model checks every summary against the real source article, a
+              deterministic gate rejects any story whose URL isn't in the search results, and the
+              pipeline regenerates once on its own before involving the reviewer.
             </p>
             <div class="project-stack">
               <span class="stack-tag">n8n</span>
@@ -1315,6 +1363,7 @@
         <div class="term-line"><span class="term-prompt">$</span><span class="term-key">email</span> <a href="mailto:jeyaalagappan@gmail.com" class="term-val">jeyaalagappan@gmail.com ↗</a></div>
         <div class="term-line"><span class="term-prompt">$</span><span class="term-key">phone</span> <a href="tel:+919487723712" class="term-val">+91 94877 23712</a></div>
         <div class="term-line"><span class="term-prompt">$</span><span class="term-key">github</span> <a href="https://github.com/JeyaAlagappan" target="_blank" class="term-val">github.com/JeyaAlagappan ↗</a></div>
+        <div class="term-line"><span class="term-prompt">$</span><span class="term-key">linkedin</span> <a href="https://www.linkedin.com/in/jeyaal/" target="_blank" class="term-val">linkedin.com/in/jeyaal ↗</a></div>
         <div class="term-line"><span class="term-prompt">$</span><span class="term-key">location</span> <span class="term-val">Chennai, Tamil Nadu, India</span></div>
         <div class="term-line"><span class="term-prompt">$</span><span class="term-key">status</span> <span class="term-status">● open to work</span><span class="cursor-blink"></span></div>
       </div>
@@ -1366,33 +1415,79 @@
     onScroll();
   })();
 
-  // Project tabs: Personal / Client, and n8n / Python within Client
+  // Mobile nav toggle
   (function () {
+    var nav = document.querySelector('nav');
+    var btn = nav.querySelector('.nav-toggle');
+    function setOpen(open) {
+      nav.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    btn.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
+    nav.querySelectorAll('.nav-links a').forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  })();
+
+  // Project tabs: Personal / Client, and n8n / Python within Client.
+  // Each tab is linkable: #personal, #client, #n8n, #python
+  (function () {
+    function select(tab, focus) {
+      var tabs = tab.closest('[role="tablist"]').querySelectorAll('[role="tab"]');
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tab.focus();
+    }
+
+    function openFromHash() {
+      var tab = document.querySelector('[role="tab"][data-hash="' + location.hash.slice(1) + '"]');
+      if (!tab) return;
+      // Reveal every enclosing panel first (e.g. #python lives inside the Client panel)
+      var panel = tab.closest('.tab-panel');
+      while (panel) {
+        var owner = document.querySelector('[role="tab"][aria-controls="' + panel.id + '"]');
+        if (owner) select(owner);
+        panel = panel.parentElement.closest('.tab-panel');
+      }
+      select(tab);
+      document.getElementById('projects').scrollIntoView();
+    }
+
     document.querySelectorAll('[role="tablist"]').forEach(function (list) {
       var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
-
-      function select(tab, focus) {
-        tabs.forEach(function (t) {
-          var on = t === tab;
-          t.setAttribute('aria-selected', on ? 'true' : 'false');
-          t.tabIndex = on ? 0 : -1;
-          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-        });
-        if (focus) tab.focus();
-      }
-
       tabs.forEach(function (tab, i) {
-        tab.addEventListener('click', function () { select(tab); });
+        tab.addEventListener('click', function () {
+          select(tab);
+          history.replaceState(null, '', '#' + tab.dataset.hash);
+        });
         tab.addEventListener('keydown', function (e) {
           var next = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
           if (next === null) return;
           e.preventDefault();
-          select(tabs[(next + tabs.length) % tabs.length], true);
+          var t = tabs[(next + tabs.length) % tabs.length];
+          select(t, true);
+          history.replaceState(null, '', '#' + t.dataset.hash);
         });
       });
-
       select(tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
     });
+
+    // On first load, wait for fonts and layout to settle so the scroll lands on #projects
+    openFromHash();
+    window.addEventListener('load', function () {
+      if (!document.querySelector('[role="tab"][data-hash="' + location.hash.slice(1) + '"]')) return;
+      var html = document.documentElement;
+      html.style.scrollBehavior = 'auto';
+      document.getElementById('projects').scrollIntoView();
+      html.style.scrollBehavior = '';
+    });
+    window.addEventListener('hashchange', openFromHash);
   })();
 </script>
 
