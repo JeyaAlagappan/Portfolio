@@ -488,6 +488,33 @@
   .project-card.is-personal { border-left-color: var(--signal); }
   .project-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
   .project-card.full-width { grid-column: 1 / -1; }
+  .projects-grid.thirds { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 1100px) { .projects-grid.thirds { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 900px) { .projects-grid.thirds { grid-template-columns: 1fr; } }
+  .projects-grid + .group-head { margin-top: 3rem; }
+
+  .group-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .group-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 600; }
+  .group-head.is-personal .group-title { color: var(--signal); }
+  .group-head.is-client .group-title { color: var(--gold); }
+  .group-count { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; }
+  .subgroup-head {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper-soft);
+    margin-bottom: 1rem;
+  }
+  .projects-grid + .subgroup-head { margin-top: 2.2rem; }
 
   .card-header {
     display: flex;
@@ -724,7 +751,7 @@
     <div class="status-label">Projects shipped</div>
   </div>
   <div class="status-item" data-tag="// CLIENT WORK">
-    <div class="status-num">6</div>
+    <div class="status-num">7</div>
     <div class="status-label">Client deliverables</div>
   </div>
   <div class="status-item" data-tag="// STACK">
@@ -789,221 +816,16 @@
     <div class="section-label">02 — Projects</div>
     <h2 class="section-title">Selected builds</h2>
     <p class="section-desc">
-      A mix of client deliverables and personal builds — each designed to solve a real problem
-      with production-grade architecture.
+      Personal builds first, then client deliverables — split into n8n automations and
+      full-stack / Python systems. Each designed to solve a real problem with production-grade
+      architecture.
     </p>
 
-    <div class="projects-grid">
-
-      <!-- CLIENT: AI Podcast Generator -->
-      <div class="project-card is-client">
-        <div class="card-header">
-          <div>
-            <div class="card-badges">
-              <span class="badge badge-client">★ Client</span>
-              <span class="badge">n8n</span>
-              <span class="badge">AI</span>
-            </div>
-            <h3 class="project-title">AI Podcast Generator</h3>
-          </div>
-          <span class="project-num">MOD·01</span>
-        </div>
-        <p class="project-desc">
-          End-to-end automated podcast creation pipeline. Researches a topic, writes a script with
-          multiple speaker voices, generates AI audio, and delivers a complete podcast episode —
-          all without human intervention. Delivered as a client automation workflow.
-        </p>
-        <div class="project-stack">
-          <span class="stack-tag">n8n</span>
-          <span class="stack-tag">ElevenLabs</span>
-          <span class="stack-tag">GPT-4o</span>
-          <span class="stack-tag">Audio AI</span>
-        </div>
-        <div class="project-links">
-          <a href="https://drive.google.com/file/d/1_lpJdwFXs6-vroDMSG0uo9K28HhAiuqu/view?usp=gmail" target="_blank" class="link-btn">
-            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
-            Watch Demo
-          </a>
-        </div>
-      </div>
-
-      <!-- CLIENT: Content Intelligence Engine -->
-      <div class="project-card is-client full-width">
-        <div class="fw-grid">
-          <div>
-            <div class="card-header">
-              <div>
-                <div class="card-badges">
-                  <span class="badge badge-client">★ Client</span>
-                  <span class="badge">n8n</span>
-                  <span class="badge">AI</span>
-                </div>
-                <h3 class="project-title">Content Intelligence Engine</h3>
-              </div>
-              <span class="project-num">MOD·02</span>
-            </div>
-            <p class="project-desc">
-              Fully automated 5-flow n8n pipeline that researches AI-industry news every weekday
-              morning and turns it into three ready-to-use outputs — a structured research briefing,
-              a branded PDF newsletter, and a two-voice conversational podcast episode. Reads full
-              articles rather than headlines, deduplicates overlapping stories, and keeps only the
-              strongest source per story. Fully config-driven via Google Sheets, and extends an
-              existing Gmail email-to-podcast workflow with built-in error logging and failure alerts.
-            </p>
-            <div class="project-stack">
-              <span class="stack-tag">n8n</span>
-              <span class="stack-tag">Google Sheets</span>
-              <span class="stack-tag">Google Drive</span>
-              <span class="stack-tag">GPT-4o</span>
-              <span class="stack-tag">Transistor</span>
-              <span class="stack-tag">Gmail</span>
-            </div>
-            <div class="project-links">
-              <span class="no-demo">Demo available on request</span>
-            </div>
-          </div>
-          <div class="flow-block" style="margin-top:2.6rem;">
-            <div class="flow-label">5-flow pipeline</div>
-            <div class="flow-step"><span class="dot">1</span><span><span class="step-title">Research Engine</span> — gathers, filters &amp; dedupes daily AI news</span></div>
-            <div class="flow-step"><span class="dot">2</span><span><span class="step-title">PDF Newsletter</span> — formats briefing, saves to Drive</span></div>
-            <div class="flow-step"><span class="dot">3</span><span><span class="step-title">Podcast Script</span> — rewrites briefing as a two-voice script</span></div>
-            <div class="flow-step"><span class="dot">4</span><span><span class="step-title">Audio Generation</span> — TTS, intro/outro music, transcript</span></div>
-            <div class="flow-step"><span class="dot last">5</span><span><span class="step-title">Publishing</span> — goes live on a private Transistor feed</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CLIENT: Front Desk Call Analysis -->
-      <div class="project-card is-client">
-        <div class="card-header">
-          <div>
-            <div class="card-badges">
-              <span class="badge badge-client">★ Client</span>
-              <span class="badge">Python</span>
-              <span class="badge">AI</span>
-            </div>
-            <h3 class="project-title">Front Desk Call Analysis</h3>
-          </div>
-          <span class="project-num">MOD·03</span>
-        </div>
-        <p class="project-desc">
-          FastAPI + SQLite call-tracking system built for a 5–6 agent front-desk team at an
-          immigration law firm. Uploads call recordings, transcribes and diarizes them via an
-          admin-switchable provider (Groq / AssemblyAI / OpenAI — swappable live, no redeploy),
-          then extracts 26 structured fields (client name, case type, urgency, summary, etc.)
-          using Google Gemini. Agents review and correct extracted fields before confirming to a
-          shared Excel tracker, with encrypted credential storage and idempotent DB-sync
-          migrations to keep schema changes safe in production.
-        </p>
-        <div class="project-stack">
-          <span class="stack-tag">FastAPI</span>
-          <span class="stack-tag">SQLite</span>
-          <span class="stack-tag">Google Gemini</span>
-          <span class="stack-tag">Groq</span>
-          <span class="stack-tag">AssemblyAI</span>
-          <span class="stack-tag">OpenAI</span>
-        </div>
-        <div class="project-links">
-          <span class="no-demo">Demo available on request</span>
-        </div>
-      </div>
-
-      <!-- CLIENT: Lead Generation / Enrichment -->
-      <div class="project-card is-client">
-        <div class="card-header">
-          <div>
-            <div class="card-badges">
-              <span class="badge badge-client">★ Client</span>
-              <span class="badge">n8n</span>
-              <span class="badge">AI</span>
-            </div>
-            <h3 class="project-title">AI Lead Enrichment Pipeline</h3>
-          </div>
-          <span class="project-num">MOD·04</span>
-        </div>
-        <p class="project-desc">
-          Automated lead generation and enrichment system. Ingests raw lead data, enriches it through
-          multiple data sources using AI, scores and qualifies leads, and routes them into CRM
-          workflows automatically. Built for a client's sales team to eliminate manual prospecting.
-        </p>
-        <div class="project-stack">
-          <span class="stack-tag">n8n</span>
-          <span class="stack-tag">OpenAI</span>
-          <span class="stack-tag">CRM Integration</span>
-          <span class="stack-tag">APIs</span>
-        </div>
-        <div class="project-links">
-          <a href="https://www.loom.com/share/66d19968732a4cada1d036508497a6c0" target="_blank" class="link-btn">
-            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
-            Watch Demo
-          </a>
-        </div>
-      </div>
-
-      <!-- CLIENT: AI SEO Blog -->
-      <div class="project-card is-client">
-        <div class="card-header">
-          <div>
-            <div class="card-badges">
-              <span class="badge badge-client">★ Client</span>
-              <span class="badge">n8n</span>
-              <span class="badge">AI</span>
-            </div>
-            <h3 class="project-title">AI SEO Blog Creation</h3>
-          </div>
-          <span class="project-num">MOD·05</span>
-        </div>
-        <p class="project-desc">
-          Fully automated SEO blog content pipeline. Takes a keyword or topic, researches competitors
-          and SERP data, generates SEO-optimised long-form blog posts with structured headings,
-          internal links, and meta content — then publishes directly to the CMS.
-        </p>
-        <div class="project-stack">
-          <span class="stack-tag">n8n</span>
-          <span class="stack-tag">GPT-4o</span>
-          <span class="stack-tag">SEO APIs</span>
-          <span class="stack-tag">CMS Integration</span>
-        </div>
-        <div class="project-links">
-          <span class="no-demo">Demo available on request</span>
-        </div>
-      </div>
-
-      <!-- Newsletter Bot -->
-      <div class="project-card is-personal">
-        <div class="card-header">
-          <div>
-            <div class="card-badges">
-              <span class="badge badge-personal">○ Personal</span>
-              <span class="badge">n8n</span>
-            </div>
-            <h3 class="project-title">N8N Newsletter Bot</h3>
-          </div>
-          <span class="project-num">MOD·06</span>
-        </div>
-        <p class="project-desc">
-          Multi-step n8n workflow triggered by a Slack message. Aggregates news from 3 REST APIs,
-          fetches stock imagery, generates an AI-powered HTML newsletter, sends real-time Slack
-          status notifications, and delivers via Gmail OAuth2.
-        </p>
-        <div class="project-stack">
-          <span class="stack-tag">n8n</span>
-          <span class="stack-tag">GPT-4o-mini</span>
-          <span class="stack-tag">Slack API</span>
-          <span class="stack-tag">Gmail OAuth2</span>
-          <span class="stack-tag">JavaScript</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/JeyaAlagappan/N8N_Newsletter_Bot" target="_blank" class="link-btn">
-            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            GitHub
-          </a>
-          <a href="https://www.loom.com/share/5cdbc25096604e1e8c105956e23c653f" target="_blank" class="link-btn">
-            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
-            Watch Demo
-          </a>
-        </div>
-      </div>
+    <div class="group-head is-personal">
+      <span class="group-title">○ Personal Builds</span>
+      <span class="group-count">04 projects</span>
+    </div>
+    <div class="projects-grid thirds">
 
       <!-- Multi-Agent Travel Agency - FULL WIDTH -->
       <div class="project-card is-personal full-width">
@@ -1018,7 +840,7 @@
                 </div>
                 <h3 class="project-title">AI Travel Assistant</h3>
               </div>
-              <span class="project-num">MOD·07</span>
+              <span class="project-num">MOD·01</span>
             </div>
             <p class="project-desc">
               7-agent orchestration system built with AutoGen SelectorGroupChat. Coordinates a
@@ -1064,7 +886,7 @@
             </div>
             <h3 class="project-title">Real Estate Intelligence Agent</h3>
           </div>
-          <span class="project-num">MOD·08</span>
+          <span class="project-num">MOD·02</span>
         </div>
         <p class="project-desc">
           Hybrid RAG system combining a Knowledge Graph (Neo4j) with Vector Search (ChromaDB). A
@@ -1088,6 +910,39 @@
         </div>
       </div>
 
+      <!-- Local SQL Agent -->
+      <div class="project-card is-personal">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-personal">○ Personal</span>
+              <span class="badge">Python</span>
+              <span class="badge">Local LLM</span>
+            </div>
+            <h3 class="project-title">Local SQL Agent</h3>
+          </div>
+          <span class="project-num">MOD·03</span>
+        </div>
+        <p class="project-desc">
+          Talk to any database in plain English — 100% offline, 100% private. Uses a local LLM
+          (Ollama) to convert natural language questions into SQL queries and return results. No
+          cloud API calls, no data leaving your machine.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Ollama</span>
+          <span class="stack-tag">LangChain</span>
+          <span class="stack-tag">SQL</span>
+          <span class="stack-tag">Local LLM</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/JeyaAlagappan/Local_Sql_Agent" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
       <!-- HackerNews Trend Analyser -->
       <div class="project-card is-personal">
         <div class="card-header">
@@ -1099,7 +954,7 @@
             </div>
             <h3 class="project-title">HackerNews Trend Analyser</h3>
           </div>
-          <span class="project-num">MOD·09</span>
+          <span class="project-num">MOD·04</span>
         </div>
         <p class="project-desc">
           4-agent pipeline — NewsFetcher, TrendAnalyzer, ContentWriter, Editor — that fetches HN top
@@ -1122,36 +977,59 @@
         </div>
       </div>
 
-      <!-- Local SQL Agent -->
-      <div class="project-card is-personal">
-        <div class="card-header">
+    </div>
+
+    <div class="group-head is-client">
+      <span class="group-title">★ Client Builds</span>
+      <span class="group-count">07 projects</span>
+    </div>
+
+    <div class="subgroup-head">n8n Automations</div>
+    <div class="projects-grid thirds">
+
+      <!-- CLIENT: Content Intelligence Engine -->
+      <div class="project-card is-client full-width">
+        <div class="fw-grid">
           <div>
-            <div class="card-badges">
-              <span class="badge badge-personal">○ Personal</span>
-              <span class="badge">Python</span>
-              <span class="badge">Local LLM</span>
+            <div class="card-header">
+              <div>
+                <div class="card-badges">
+                  <span class="badge badge-client">★ Client</span>
+                  <span class="badge">n8n</span>
+                  <span class="badge">AI</span>
+                </div>
+                <h3 class="project-title">Content Intelligence Engine</h3>
+              </div>
+              <span class="project-num">MOD·05</span>
             </div>
-            <h3 class="project-title">Local SQL Agent</h3>
+            <p class="project-desc">
+              Fully automated 5-flow n8n pipeline that researches AI-industry news every weekday
+              morning and turns it into three ready-to-use outputs — a structured research briefing,
+              a branded PDF newsletter, and a two-voice conversational podcast episode. Reads full
+              articles rather than headlines, deduplicates overlapping stories, and keeps only the
+              strongest source per story. Fully config-driven via Google Sheets, and extends an
+              existing Gmail email-to-podcast workflow with built-in error logging and failure alerts.
+            </p>
+            <div class="project-stack">
+              <span class="stack-tag">n8n</span>
+              <span class="stack-tag">Google Sheets</span>
+              <span class="stack-tag">Google Drive</span>
+              <span class="stack-tag">GPT-4o</span>
+              <span class="stack-tag">Transistor</span>
+              <span class="stack-tag">Gmail</span>
+            </div>
+            <div class="project-links">
+              <span class="no-demo">Demo available on request</span>
+            </div>
           </div>
-          <span class="project-num">MOD·10</span>
-        </div>
-        <p class="project-desc">
-          Talk to any database in plain English — 100% offline, 100% private. Uses a local LLM
-          (Ollama) to convert natural language questions into SQL queries and return results. No
-          cloud API calls, no data leaving your machine.
-        </p>
-        <div class="project-stack">
-          <span class="stack-tag">Python</span>
-          <span class="stack-tag">Ollama</span>
-          <span class="stack-tag">LangChain</span>
-          <span class="stack-tag">SQL</span>
-          <span class="stack-tag">Local LLM</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/JeyaAlagappan/Local_Sql_Agent" target="_blank" class="link-btn">
-            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            GitHub
-          </a>
+          <div class="flow-block" style="margin-top:2.6rem;">
+            <div class="flow-label">5-flow pipeline</div>
+            <div class="flow-step"><span class="dot">1</span><span><span class="step-title">Research Engine</span> — gathers, filters &amp; dedupes daily AI news</span></div>
+            <div class="flow-step"><span class="dot">2</span><span><span class="step-title">PDF Newsletter</span> — formats briefing, saves to Drive</span></div>
+            <div class="flow-step"><span class="dot">3</span><span><span class="step-title">Podcast Script</span> — rewrites briefing as a two-voice script</span></div>
+            <div class="flow-step"><span class="dot">4</span><span><span class="step-title">Audio Generation</span> — TTS, intro/outro music, transcript</span></div>
+            <div class="flow-step"><span class="dot last">5</span><span><span class="step-title">Publishing</span> — goes live on a private Transistor feed</span></div>
+          </div>
         </div>
       </div>
 
@@ -1168,7 +1046,7 @@
                 </div>
                 <h3 class="project-title">AI Ghostwriter with Hallucination Guardrails</h3>
               </div>
-              <span class="project-num">MOD·11</span>
+              <span class="project-num">MOD·06</span>
             </div>
             <p class="project-desc">
               Three-agent n8n pipeline that researches daily industry news, lets a human pick a
@@ -1205,6 +1083,177 @@
             <div class="flow-step"><span class="dot">5</span><span><span class="step-title">Visual Generation</span> — AI hero image + 6-slide carousel</span></div>
             <div class="flow-step"><span class="dot last">6</span><span><span class="step-title">Approval &amp; Publish</span> — Telegram approve/deny gate, then publishes via Buffer</span></div>
           </div>
+        </div>
+      </div>
+
+      <!-- CLIENT: AI Podcast Generator -->
+      <div class="project-card is-client">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-client">★ Client</span>
+              <span class="badge">n8n</span>
+              <span class="badge">AI</span>
+            </div>
+            <h3 class="project-title">AI Podcast Generator</h3>
+          </div>
+          <span class="project-num">MOD·07</span>
+        </div>
+        <p class="project-desc">
+          End-to-end automated podcast creation pipeline. Researches a topic, writes a script with
+          multiple speaker voices, generates AI audio, and delivers a complete podcast episode —
+          all without human intervention. Delivered as a client automation workflow.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">n8n</span>
+          <span class="stack-tag">ElevenLabs</span>
+          <span class="stack-tag">GPT-4o</span>
+          <span class="stack-tag">Audio AI</span>
+        </div>
+        <div class="project-links">
+          <a href="https://drive.google.com/file/d/1_lpJdwFXs6-vroDMSG0uo9K28HhAiuqu/view?usp=gmail" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
+            Watch Demo
+          </a>
+        </div>
+      </div>
+
+      <!-- CLIENT: Lead Generation / Enrichment -->
+      <div class="project-card is-client">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-client">★ Client</span>
+              <span class="badge">n8n</span>
+              <span class="badge">AI</span>
+            </div>
+            <h3 class="project-title">AI Lead Enrichment Pipeline</h3>
+          </div>
+          <span class="project-num">MOD·08</span>
+        </div>
+        <p class="project-desc">
+          Automated lead generation and enrichment system. Ingests raw lead data, enriches it through
+          multiple data sources using AI, scores and qualifies leads, and routes them into CRM
+          workflows automatically. Built for a client's sales team to eliminate manual prospecting.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">n8n</span>
+          <span class="stack-tag">OpenAI</span>
+          <span class="stack-tag">CRM Integration</span>
+          <span class="stack-tag">APIs</span>
+        </div>
+        <div class="project-links">
+          <a href="https://www.loom.com/share/66d19968732a4cada1d036508497a6c0" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 14,8 5,13"/></svg>
+            Watch Demo
+          </a>
+        </div>
+      </div>
+
+      <!-- CLIENT: AI SEO Blog -->
+      <div class="project-card is-client">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-client">★ Client</span>
+              <span class="badge">n8n</span>
+              <span class="badge">AI</span>
+            </div>
+            <h3 class="project-title">AI SEO Blog Creation</h3>
+          </div>
+          <span class="project-num">MOD·09</span>
+        </div>
+        <p class="project-desc">
+          Fully automated SEO blog content pipeline. Takes a keyword or topic, researches competitors
+          and SERP data, generates SEO-optimised long-form blog posts with structured headings,
+          internal links, and meta content — then publishes directly to the CMS.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">n8n</span>
+          <span class="stack-tag">GPT-4o</span>
+          <span class="stack-tag">SEO APIs</span>
+          <span class="stack-tag">CMS Integration</span>
+        </div>
+        <div class="project-links">
+          <span class="no-demo">Demo available on request</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="subgroup-head">Full-stack &amp; Python</div>
+    <div class="projects-grid">
+
+      <!-- CLIENT: Front Desk Call Analysis -->
+      <div class="project-card is-client">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-client">★ Client</span>
+              <span class="badge">Python</span>
+              <span class="badge">AI</span>
+            </div>
+            <h3 class="project-title">Front Desk Call Analysis</h3>
+          </div>
+          <span class="project-num">MOD·10</span>
+        </div>
+        <p class="project-desc">
+          FastAPI + SQLite call-tracking system built for a 5–6 agent front-desk team at an
+          immigration law firm. Uploads call recordings, transcribes and diarizes them via an
+          admin-switchable provider (Groq / AssemblyAI / OpenAI — swappable live, no redeploy),
+          then extracts 26 structured fields (client name, case type, urgency, summary, etc.)
+          using Google Gemini. Agents review and correct extracted fields before confirming to a
+          shared Excel tracker, with encrypted credential storage and idempotent DB-sync
+          migrations to keep schema changes safe in production.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">FastAPI</span>
+          <span class="stack-tag">SQLite</span>
+          <span class="stack-tag">Google Gemini</span>
+          <span class="stack-tag">Groq</span>
+          <span class="stack-tag">AssemblyAI</span>
+          <span class="stack-tag">OpenAI</span>
+        </div>
+        <div class="project-links">
+          <span class="no-demo">Demo available on request</span>
+        </div>
+      </div>
+
+      <!-- CLIENT: Operations Dashboard -->
+      <div class="project-card is-client">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-client">★ Client</span>
+              <span class="badge">Next.js</span>
+              <span class="badge">Ops</span>
+            </div>
+            <h3 class="project-title">Operations Dashboard</h3>
+          </div>
+          <span class="project-num">MOD·11</span>
+        </div>
+        <p class="project-desc">
+          Next.js 14 control centre for a client's production n8n automations. Seven pages
+          (Overview, Workflows, Configuration, Alerts, Usage &amp; Services, Audit Log, Settings)
+          monitor workflow runs and provider health (n8n, ElevenLabs, Transistor) via scheduled
+          cron checks, route failure alerts to Slack, and let the team edit pipeline config
+          safely — validated writes, full audit trail, and Google sign-in with Viewer / Editor /
+          Admin roles. Google Sheets is the only datastore, so there's no database to run.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Next.js 14</span>
+          <span class="stack-tag">TypeScript</span>
+          <span class="stack-tag">Tailwind CSS</span>
+          <span class="stack-tag">NextAuth</span>
+          <span class="stack-tag">Google Sheets API</span>
+          <span class="stack-tag">n8n</span>
+          <span class="stack-tag">Vercel</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/JeyaAlagappan/Operations-Dashboard-" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
         </div>
       </div>
 
