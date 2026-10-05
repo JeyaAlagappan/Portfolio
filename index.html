@@ -892,171 +892,13 @@
     <div class="section-label">02 — Projects</div>
     <h2 class="section-title">Selected builds</h2>
     <p class="section-desc">
-      Personal builds and client deliverables — client work split into n8n automations and
-      Python / full-stack systems. Each designed to solve a real problem with production-grade
-      architecture.
+      Client work shipped to production — split into n8n automations and Python / full-stack
+      systems — alongside personal projects exploring multi-agent systems, RAG and local LLMs.
     </p>
 
     <div class="tabs tabs-main" role="tablist" aria-label="Project type">
-      <button class="tab is-personal" role="tab" id="tab-personal" data-hash="personal" aria-controls="panel-personal" aria-selected="true">○ Personal Builds <span class="tab-count">04</span></button>
-      <button class="tab is-client" role="tab" id="tab-client" data-hash="client" aria-controls="panel-client" aria-selected="false">★ Client Builds <span class="tab-count">07</span></button>
-    </div>
-
-    <div class="tab-panel" role="tabpanel" id="panel-personal" aria-labelledby="tab-personal">
-    <div class="projects-grid thirds">
-
-      <!-- Multi-Agent Travel Agency - FULL WIDTH -->
-      <div class="project-card is-personal full-width">
-        <div class="fw-grid">
-          <div>
-            <div class="card-header">
-              <div>
-                <div class="card-badges">
-                  <span class="badge badge-personal">○ Personal</span>
-                  <span class="badge">Python</span>
-                  <span class="badge">Multi-Agent</span>
-                </div>
-                <h3 class="project-title">AI Travel Assistant</h3>
-              </div>
-              <span class="project-num">MOD·01</span>
-            </div>
-            <p class="project-desc">
-              7-agent orchestration system built with AutoGen SelectorGroupChat. Coordinates a
-              TravelCoordinator, FlightAgent (Aviationstack API), HotelAgent (Xotelo API),
-              WeatherAgent (OpenWeatherMap), ItineraryAgent, BudgetAgent, and SummaryAgent that
-              emails the full plan. Includes feedback loops that re-trigger only the relevant
-              agents — not the full pipeline.
-            </p>
-            <div class="project-stack">
-              <span class="stack-tag">Python</span>
-              <span class="stack-tag">AutoGen 0.7.5</span>
-              <span class="stack-tag">GPT-4.1</span>
-              <span class="stack-tag">Streamlit</span>
-              <span class="stack-tag">3 Live APIs</span>
-              <span class="stack-tag">Gmail SMTP</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/JeyaAlagappan/Multi-Agent-Travel-Agency" target="_blank" class="link-btn">
-                <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-          <div class="flow-block" style="margin-top:2.6rem;">
-            <div class="flow-label">Agent architecture</div>
-            <div class="flow-step"><span class="dot">1</span>TravelCoordinator — orchestration + delegation</div>
-            <div class="flow-step"><span class="dot">2</span>FlightAgent — live Aviationstack API</div>
-            <div class="flow-step"><span class="dot">3</span>HotelAgent — live Xotelo pricing</div>
-            <div class="flow-step"><span class="dot">4</span>WeatherAgent + ItineraryAgent + BudgetAgent</div>
-            <div class="flow-step"><span class="dot last">7</span>SummaryAgent — emails full plan to user</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Real Estate Agent -->
-      <div class="project-card is-personal">
-        <div class="card-header">
-          <div>
-            <div class="card-badges">
-              <span class="badge badge-personal">○ Personal</span>
-              <span class="badge">Hybrid RAG</span>
-              <span class="badge">Python</span>
-            </div>
-            <h3 class="project-title">Real Estate Intelligence Agent</h3>
-          </div>
-          <span class="project-num">MOD·02</span>
-        </div>
-        <p class="project-desc">
-          Hybrid RAG system combining a Knowledge Graph (Neo4j) with Vector Search (ChromaDB). A
-          smart router classifies each query as structured, semantic, or hybrid and dispatches to
-          the right engine. Corrective RAG rewriting kicks in when retrieval confidence drops
-          below 0.45. Covers 100 Chennai real estate projects.
-        </p>
-        <div class="project-stack">
-          <span class="stack-tag">Python</span>
-          <span class="stack-tag">Neo4j</span>
-          <span class="stack-tag">ChromaDB</span>
-          <span class="stack-tag">LangChain</span>
-          <span class="stack-tag">Streamlit</span>
-          <span class="stack-tag">GPT-4o-mini</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/JeyaAlagappan/Real_Estate_Agent" target="_blank" class="link-btn">
-            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-
-      <!-- Local SQL Agent -->
-      <div class="project-card is-personal">
-        <div class="card-header">
-          <div>
-            <div class="card-badges">
-              <span class="badge badge-personal">○ Personal</span>
-              <span class="badge">Python</span>
-              <span class="badge">Local LLM</span>
-            </div>
-            <h3 class="project-title">Local SQL Agent</h3>
-          </div>
-          <span class="project-num">MOD·03</span>
-        </div>
-        <p class="project-desc">
-          Talk to any database in plain English — 100% offline, 100% private. Uses a local LLM
-          (Ollama) to convert natural language questions into SQL queries and return results. No
-          cloud API calls, no data leaving your machine.
-        </p>
-        <div class="project-stack">
-          <span class="stack-tag">Python</span>
-          <span class="stack-tag">Ollama</span>
-          <span class="stack-tag">LangChain</span>
-          <span class="stack-tag">SQL</span>
-          <span class="stack-tag">Local LLM</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/JeyaAlagappan/Local_Sql_Agent" target="_blank" class="link-btn">
-            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-
-      <!-- HackerNews Trend Analyser -->
-      <div class="project-card is-personal">
-        <div class="card-header">
-          <div>
-            <div class="card-badges">
-              <span class="badge badge-personal">○ Personal</span>
-              <span class="badge">Python</span>
-              <span class="badge">Multi-Agent</span>
-            </div>
-            <h3 class="project-title">HackerNews Trend Analyser</h3>
-          </div>
-          <span class="project-num">MOD·04</span>
-        </div>
-        <p class="project-desc">
-          4-agent pipeline — NewsFetcher, TrendAnalyzer, ContentWriter, Editor — that fetches HN top
-          stories, identifies tech &amp; cybersecurity trends, and produces polished editorial
-          summaries. Built with AutoGen RoundRobinGroupChat and a custom state manager for crash
-          recovery.
-        </p>
-        <div class="project-stack">
-          <span class="stack-tag">Python</span>
-          <span class="stack-tag">AutoGen</span>
-          <span class="stack-tag">GPT-4</span>
-          <span class="stack-tag">httpx async</span>
-          <span class="stack-tag">MCP</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/JeyaAlagappan/HackerNews_TrendAnalyser" target="_blank" class="link-btn">
-            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-
-    </div>
-
+      <button class="tab is-client" role="tab" id="tab-client" data-hash="client" aria-controls="panel-client" aria-selected="true">★ Client Work <span class="tab-count">07</span></button>
+      <button class="tab is-personal" role="tab" id="tab-personal" data-hash="personal" aria-controls="panel-personal" aria-selected="false">○ Personal Projects <span class="tab-count">04</span></button>
     </div>
 
     <div class="tab-panel" role="tabpanel" id="panel-client" aria-labelledby="tab-client">
@@ -1337,6 +1179,163 @@
 
     </div>
     </div>
+    </div>
+
+    <div class="tab-panel" role="tabpanel" id="panel-personal" aria-labelledby="tab-personal">
+    <div class="projects-grid thirds">
+
+      <!-- Multi-Agent Travel Agency - FULL WIDTH -->
+      <div class="project-card is-personal full-width">
+        <div class="fw-grid">
+          <div>
+            <div class="card-header">
+              <div>
+                <div class="card-badges">
+                  <span class="badge badge-personal">○ Personal</span>
+                  <span class="badge">Python</span>
+                  <span class="badge">Multi-Agent</span>
+                </div>
+                <h3 class="project-title">AI Travel Assistant</h3>
+              </div>
+              <span class="project-num">MOD·01</span>
+            </div>
+            <p class="project-desc">
+              7-agent orchestration system built with AutoGen SelectorGroupChat. Coordinates a
+              TravelCoordinator, FlightAgent (Aviationstack API), HotelAgent (Xotelo API),
+              WeatherAgent (OpenWeatherMap), ItineraryAgent, BudgetAgent, and SummaryAgent that
+              emails the full plan. Includes feedback loops that re-trigger only the relevant
+              agents — not the full pipeline.
+            </p>
+            <div class="project-stack">
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">AutoGen 0.7.5</span>
+              <span class="stack-tag">GPT-4.1</span>
+              <span class="stack-tag">Streamlit</span>
+              <span class="stack-tag">3 Live APIs</span>
+              <span class="stack-tag">Gmail SMTP</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/JeyaAlagappan/Multi-Agent-Travel-Agency" target="_blank" class="link-btn">
+                <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+          <div class="flow-block" style="margin-top:2.6rem;">
+            <div class="flow-label">Agent architecture</div>
+            <div class="flow-step"><span class="dot">1</span>TravelCoordinator — orchestration + delegation</div>
+            <div class="flow-step"><span class="dot">2</span>FlightAgent — live Aviationstack API</div>
+            <div class="flow-step"><span class="dot">3</span>HotelAgent — live Xotelo pricing</div>
+            <div class="flow-step"><span class="dot">4</span>WeatherAgent + ItineraryAgent + BudgetAgent</div>
+            <div class="flow-step"><span class="dot last">7</span>SummaryAgent — emails full plan to user</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Estate Agent -->
+      <div class="project-card is-personal">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-personal">○ Personal</span>
+              <span class="badge">Hybrid RAG</span>
+              <span class="badge">Python</span>
+            </div>
+            <h3 class="project-title">Real Estate Intelligence Agent</h3>
+          </div>
+          <span class="project-num">MOD·02</span>
+        </div>
+        <p class="project-desc">
+          Hybrid RAG system combining a Knowledge Graph (Neo4j) with Vector Search (ChromaDB). A
+          smart router classifies each query as structured, semantic, or hybrid and dispatches to
+          the right engine. Corrective RAG rewriting kicks in when retrieval confidence drops
+          below 0.45. Covers 100 Chennai real estate projects.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Neo4j</span>
+          <span class="stack-tag">ChromaDB</span>
+          <span class="stack-tag">LangChain</span>
+          <span class="stack-tag">Streamlit</span>
+          <span class="stack-tag">GPT-4o-mini</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/JeyaAlagappan/Real_Estate_Agent" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Local SQL Agent -->
+      <div class="project-card is-personal">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-personal">○ Personal</span>
+              <span class="badge">Python</span>
+              <span class="badge">Local LLM</span>
+            </div>
+            <h3 class="project-title">Local SQL Agent</h3>
+          </div>
+          <span class="project-num">MOD·03</span>
+        </div>
+        <p class="project-desc">
+          Talk to any database in plain English — 100% offline, 100% private. Uses a local LLM
+          (Ollama) to convert natural language questions into SQL queries and return results. No
+          cloud API calls, no data leaving your machine.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Ollama</span>
+          <span class="stack-tag">LangChain</span>
+          <span class="stack-tag">SQL</span>
+          <span class="stack-tag">Local LLM</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/JeyaAlagappan/Local_Sql_Agent" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- HackerNews Trend Analyser -->
+      <div class="project-card is-personal">
+        <div class="card-header">
+          <div>
+            <div class="card-badges">
+              <span class="badge badge-personal">○ Personal</span>
+              <span class="badge">Python</span>
+              <span class="badge">Multi-Agent</span>
+            </div>
+            <h3 class="project-title">HackerNews Trend Analyser</h3>
+          </div>
+          <span class="project-num">MOD·04</span>
+        </div>
+        <p class="project-desc">
+          4-agent pipeline — NewsFetcher, TrendAnalyzer, ContentWriter, Editor — that fetches HN top
+          stories, identifies tech &amp; cybersecurity trends, and produces polished editorial
+          summaries. Built with AutoGen RoundRobinGroupChat and a custom state manager for crash
+          recovery.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">AutoGen</span>
+          <span class="stack-tag">GPT-4</span>
+          <span class="stack-tag">httpx async</span>
+          <span class="stack-tag">MCP</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/JeyaAlagappan/HackerNews_TrendAnalyser" target="_blank" class="link-btn">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+
     </div>
   </div>
 </section>
