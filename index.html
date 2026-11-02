@@ -398,7 +398,7 @@
     border-radius: 4px;
     background: var(--panel);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .status-item {
@@ -428,6 +428,7 @@
   .status-item:nth-child(1) .status-num { color: var(--copper-soft); }
   .status-item:nth-child(2) .status-num { color: var(--gold); }
   .status-item:nth-child(3) .status-num { color: var(--violet-soft); }
+  .status-item:nth-child(4) .status-num { color: var(--signal); }
 
   .status-label {
     font-family: 'IBM Plex Mono', monospace;
@@ -624,6 +625,10 @@
   }
 
   .project-desc { color: var(--text2); font-size: 14.5px; line-height: 1.7; margin-bottom: 1.2rem; }
+  .project-impact {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--signal);
+    border-left: 2px solid var(--signal); padding: 0.35rem 0 0.35rem 0.75rem; margin: -0.4rem 0 1.2rem;
+  }
 
   .project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.2rem; }
   .stack-tag {
@@ -834,6 +839,10 @@
     <div class="status-num">7+</div>
     <div class="status-label">Tech stacks mastered</div>
   </div>
+  <div class="status-item" data-tag="// IMPACT">
+    <div class="status-num">~195h</div>
+    <div class="status-label">Staff hours saved / week</div>
+  </div>
 </div>
 
 <!-- ABOUT -->
@@ -933,6 +942,7 @@
               strongest source per story. Fully config-driven via Google Sheets, and extends an
               existing Gmail email-to-podcast workflow with built-in error logging and failure alerts.
             </p>
+            <div class="project-impact">Replaces ~8 hours of manual research, writing &amp; audio a day (~40 h/week) · 60+ editions published</div>
             <div class="project-stack">
               <span class="stack-tag">n8n</span>
               <span class="stack-tag">Google Sheets</span>
@@ -1022,6 +1032,7 @@
           multiple speaker voices, generates AI audio, and delivers a complete podcast episode —
           all without human intervention. Delivered as a client automation workflow.
         </p>
+        <div class="project-impact">Saves ~6 hours of production per episode (~30 h/week) · 120+ episodes shipped</div>
         <div class="project-stack">
           <span class="stack-tag">n8n</span>
           <span class="stack-tag">ElevenLabs</span>
@@ -1126,6 +1137,7 @@
           shared Excel tracker, with encrypted credential storage and idempotent DB-sync
           migrations to keep schema changes safe in production.
         </p>
+        <div class="project-impact">Saves ~15 min of manual entry per call × 500 calls/week ≈ 125 staff hours/week</div>
         <div class="project-stack">
           <span class="stack-tag">FastAPI</span>
           <span class="stack-tag">SQLite</span>
@@ -1160,6 +1172,7 @@
           safely — validated writes, full audit trail, and Google sign-in with Viewer / Editor /
           Admin roles. Google Sheets is the only datastore, so there's no database to run.
         </p>
+        <div class="project-impact">Cut time to detect a failure from 30 minutes to 1 minute</div>
         <div class="project-stack">
           <span class="stack-tag">Next.js 14</span>
           <span class="stack-tag">TypeScript</span>
